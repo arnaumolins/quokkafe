@@ -3,13 +3,13 @@ package github.com.arnaumolins.quokkafe.Model;
 import java.util.List;
 
 public class User {
-    public int userId;
-    public String userName;
-    public String userEmail;
-    public String userPassword;
-    public int userAge;
-    public int userPoints;
-    public List<String> interestedIn;
+    private int userId;
+    private String userName;
+    private String userEmail;
+    private String userPassword;
+    private int userAge;
+    private int userPoints;
+    private List<String> interestedIn;
 
     public User() {}
 

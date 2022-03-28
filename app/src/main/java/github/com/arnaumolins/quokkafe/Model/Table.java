@@ -1,10 +1,10 @@
 package github.com.arnaumolins.quokkafe.Model;
 
 public class Table {
-    public int tableId;
-    public int tableNumber;
-    public int numberOfCustomers;
-    public boolean isAvailable;
+    private int tableId;
+    private int tableNumber;
+    private int numberOfCustomers;
+    private boolean isAvailable;
 
     public Table() {}
 

@@ -5,12 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 public class Event {
-    public int eventId;
-    public int guestId;
-    public String theme;
-    public String eventDescription;
-    public List<User> assistants;
-    public Date date;
+    private int eventId;
+    private int guestId;
+    private String theme;
+    private String eventDescription;
+    private List<User> assistants;
+    private Date date;
 
     public Event() {}
 
