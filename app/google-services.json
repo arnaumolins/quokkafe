@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "790500287052",
+    "project_id": "quokkafe-f0397",
+    "storage_bucket": "quokkafe-f0397.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790500287052:android:8f4b68151d521c0d858ae9",
+        "android_client_info": {
+          "package_name": "github.com.arnaumolins.quokkafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790500287052-liu72dha248s9e25c43kt0t6s3kcel2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC77YuJ8Jfu0Ch0v97VmDq4-sMimEIxtJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790500287052-liu72dha248s9e25c43kt0t6s3kcel2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
