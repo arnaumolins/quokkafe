@@ -9,5 +9,22 @@
         android:id="@+id/starting_page_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.starting_page_fragment"
         android:label="fragment_starting_page_fragment"
-        tools:layout="@layout/fragment_starting_page_fragment" />
+        tools:layout="@layout/fragment_starting_page_fragment" >
+        <action
+            android:id="@+id/action_starting_page_fragment_to_sign_in_fragment"
+            app:destination="@id/sign_in_fragment" />
+        <action
+            android:id="@+id/action_starting_page_fragment_to_log_in_fragment"
+            app:destination="@id/log_in_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sign_in_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.sign_in_fragment"
+        android:label="fragment_sign_in_fragment"
+        tools:layout="@layout/fragment_sign_in_fragment" />
+    <fragment
+        android:id="@+id/log_in_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.log_in_fragment"
+        android:label="fragment_log_in_fragment"
+        tools:layout="@layout/fragment_log_in_fragment" />
 </navigation>

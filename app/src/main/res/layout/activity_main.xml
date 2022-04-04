@@ -33,7 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/dark_brown"
-            app:menu="@menu/bottom_navigation_menu"/>
+            app:menu="@menu/bottom_navigation_menu"
+            app:itemRippleColor="@color/white"
+            app:itemIconTint="@color/icons_color"/>
 
         <fragment
             android:id="@+id/navHostFragment"
@@ -54,6 +56,5 @@
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
         app:headerLayout="@layout/drawer_header"/>
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

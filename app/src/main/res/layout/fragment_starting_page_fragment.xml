@@ -20,13 +20,13 @@
     </ImageView>
 
     <Button
-        android:id="@+id/sign_in_user"
+        android:id="@+id/sign_in_user_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SIGN IN"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/log_in_user"
+        app:layout_constraintBottom_toTopOf="@+id/log_in_user_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
     </Button>
 
     <Button
-        android:id="@+id/log_in_user"
+        android:id="@+id/log_in_user_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="72dp"
