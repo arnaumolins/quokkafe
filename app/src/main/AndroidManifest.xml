@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quokkafe">
+
         <activity
             android:name=".UI.MainActivity"
             android:exported="true">
