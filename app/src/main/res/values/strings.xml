@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">quokkafe</string>
+    <string name="app_name">QUOKKAFE</string>
+    <string name="nav_drawe_open" translatable="false">OPEN!</string>
+    <string name="nav_drawe_close">CLOSE!</string>
 </resources>
