@@ -26,6 +26,7 @@ public class starting_page_fragment extends Fragment {
         super.onResume();
         getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.GONE);
         getActivity().findViewById(R.id.appbar_top).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.main_toolbar).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -35,7 +36,6 @@ public class starting_page_fragment extends Fragment {
 
     Button signinButton;
     Button loginButton;
-    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

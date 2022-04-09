@@ -21,7 +21,11 @@
         android:id="@+id/sign_in_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.sign_in_fragment"
         android:label="fragment_sign_in_fragment"
-        tools:layout="@layout/fragment_sign_in_fragment" />
+        tools:layout="@layout/fragment_sign_in_fragment" >
+        <action
+            android:id="@+id/action_sign_in_fragment_to_log_in_fragment"
+            app:destination="@id/log_in_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/log_in_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.log_in_fragment"

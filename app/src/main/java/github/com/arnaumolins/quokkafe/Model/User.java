@@ -3,17 +3,26 @@ package github.com.arnaumolins.quokkafe.Model;
 import java.util.List;
 
 public class User {
-    private int userId;
-    private String userName;
-    private String userEmail;
-    private String userPassword;
-    private int userAge;
-    private int userPoints;
-    private List<String> interestedIn;
+    public String userId;
+    public String userName;
+    public String userEmail;
+    public String userPassword;
+    public int userAge;
+    public int userPoints;
+    public List<String> interestedIn;
 
     public User() {}
 
-    public User(int userId, String userName, String userEmail, String userPassword, int userAge, List<String> interestedIn) {
+    public User (String userName, String userEmail, int userAge, List<String> interestedIn) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.userAge = userAge;
+        this.userPoints = 0;
+        this.interestedIn = interestedIn;
+    }
+
+    public User(String userId, String userName, String userEmail, String userPassword, int userAge, List<String> interestedIn) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -23,11 +32,11 @@ public class User {
         this.interestedIn = interestedIn;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

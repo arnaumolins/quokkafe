@@ -2,6 +2,27 @@
     <string name="app_name">QUOKKAFE</string>
     <string name="nav_drawe_open" translatable="false">OPEN!</string>
     <string name="nav_drawe_close">CLOSE!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">HELLO NEW FRAGMENT</string>
+    <string-array name="InterestsList">
+        <item>Music</item>
+        <item>Movies</item>
+        <item>Cooking</item>
+        <item>Actualities</item>
+        <item>Sport</item>
+        <item>Science</item>
+        <item>Nature</item>
+        <item>Animals</item>
+        <item>Art</item>
+        <item>Gardening</item>
+        <item>Fashion</item>
+        <item>Cars</item>
+        <item>Traveling</item>
+        <item>Architecture</item>
+        <item>Ecology</item>
+        <item>Health</item>
+        <item>Crypto / Business</item>
+        <item>Languages</item>
+        <item>LGBTQ +</item>
+        <item>Gaming</item>
+    </string-array>
 </resources>
