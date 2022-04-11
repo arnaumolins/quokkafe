@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
 }
 
 android {
@@ -8,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "github.com.arnaumolins.quokkafe"
-        minSdk 31
+        minSdk 21
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -27,7 +26,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
 dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
