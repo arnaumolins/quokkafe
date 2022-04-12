@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "790500287052",
-    "project_id": "quokkafe-f0397",
-    "storage_bucket": "quokkafe-f0397.appspot.com"
+    "project_number": "1008138218141",
+    "firebase_url": "https://quokkafe-cd539-default-rtdb.firebaseio.com",
+    "project_id": "quokkafe-cd539",
+    "storage_bucket": "quokkafe-cd539.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:790500287052:android:8f4b68151d521c0d858ae9",
+        "mobilesdk_app_id": "1:1008138218141:android:5a4b6217634e73d38f0274",
         "android_client_info": {
           "package_name": "github.com.arnaumolins.quokkafe"
         }
       },
       "oauth_client": [
         {
-          "client_id": "790500287052-liu72dha248s9e25c43kt0t6s3kcel2r.apps.googleusercontent.com",
+          "client_id": "1008138218141-d116racq8dn49723jkajvq83tvcaugth.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC77YuJ8Jfu0Ch0v97VmDq4-sMimEIxtJ0"
+          "current_key": "AIzaSyAa-JE-N3Vdk_fmOM8euDtTUHes0mrE2r4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "790500287052-liu72dha248s9e25c43kt0t6s3kcel2r.apps.googleusercontent.com",
+              "client_id": "1008138218141-d116racq8dn49723jkajvq83tvcaugth.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

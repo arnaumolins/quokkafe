@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -124,6 +125,8 @@ public class sign_in_fragment extends Fragment {
         }
 
         progressBar.setVisibility(View.VISIBLE);
+        Log.d("debug", emailString);
+        Log.d("debug", passwordString);
 
         mAuth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -144,6 +147,8 @@ public class sign_in_fragment extends Fragment {
                         }
                     });
                 } else {
+                    Log.d("debug", task.getException().toString());
+                    Log.d("debug", task.getException().getMessage());
                     Toast.makeText(getActivity(), "Failed to register! AQUI Try again!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
