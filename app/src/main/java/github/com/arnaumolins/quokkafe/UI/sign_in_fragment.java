@@ -125,6 +125,31 @@ public class sign_in_fragment extends Fragment {
 
         progressBar.setVisibility(View.VISIBLE);
 
+        mAuth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    User user = new User(usernameString, emailString, 18, interestsStrings);
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getActivity(), "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_fragment_to_log_in_fragment);
+                            } else {
+                                Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(getActivity(), "Failed to register! AQUI Try again!", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
+        /*
         AuthViewModel authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         authViewModel.signUp(usernameString, emailString, passwordString, interestsStrings).observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
@@ -140,6 +165,6 @@ public class sign_in_fragment extends Fragment {
                     signinButton.setEnabled(true);
                 }
             }
-        });
+        });*/
     }
 }
