@@ -125,9 +125,8 @@ public class sign_in_fragment extends Fragment {
         }
 
         progressBar.setVisibility(View.VISIBLE);
-        Log.d("debug", emailString);
-        Log.d("debug", passwordString);
 
+        /*
         mAuth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -147,14 +146,12 @@ public class sign_in_fragment extends Fragment {
                         }
                     });
                 } else {
-                    Log.d("debug", task.getException().toString());
-                    Log.d("debug", task.getException().getMessage());
-                    Toast.makeText(getActivity(), "Failed to register! AQUI Try again!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }
-        });
-        /*
+        });*/
+
         AuthViewModel authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         authViewModel.signUp(usernameString, emailString, passwordString, interestsStrings).observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
@@ -170,6 +167,6 @@ public class sign_in_fragment extends Fragment {
                     signinButton.setEnabled(true);
                 }
             }
-        });*/
+        });
     }
 }
