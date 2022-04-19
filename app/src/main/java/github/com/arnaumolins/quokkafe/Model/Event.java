@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 public class Event {
-    private int eventId;
+    private String eventId;
+    private String eventName;
     private int guestId;
     private String theme;
     private String eventDescription;
@@ -14,8 +15,9 @@ public class Event {
 
     public Event() {}
 
-    public Event(int eventId, int guestId, String theme, String eventDescription, Date date) {
+    public Event(String eventId, String eventName, int guestId, String theme, String eventDescription, Date date) {
         this.eventId = eventId;
+        this.eventName = eventName;
         this.guestId = guestId;
         this.theme = theme;
         this.eventDescription = eventDescription;
@@ -23,12 +25,20 @@ public class Event {
         this.date = date;
     }
 
-    public int getEventId() {
+    public String  getEventId() {
         return eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(String  eventId) {
         this.eventId = eventId;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public int getGuestId() {
