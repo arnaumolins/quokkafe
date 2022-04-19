@@ -3,12 +3,22 @@ package github.com.arnaumolins.quokkafe.UI;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
+import github.com.arnaumolins.quokkafe.ViewModel.AuthViewModel;
 
 public class log_in_fragment extends Fragment {
 
@@ -20,6 +30,11 @@ public class log_in_fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+    private EditText email, password;
+    private Button log_in_button;
+    private ProgressBar progressBar;
+    AuthViewModel authViewModel;
 
     @Override
     public void onResume(){
@@ -33,6 +48,64 @@ public class log_in_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_log_in_fragment, container, false);
+        email = (EditText) view.findViewById(R.id.email_log);
+        password = (EditText) view.findViewById(R.id.password_log);
+        log_in_button = (Button) view.findViewById(R.id.log_in_action);
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar2);
+
+        log_in_button.setOnClickListener(l -> {
+            logInFunction();
+        });
         return view;
+    }
+
+    public void logInFunction(){
+        String emailString = email.getText().toString().trim();
+        String passwordString = password.getText().toString().trim();
+
+        if (emailString.isEmpty()) {
+            email.setError("Email is required!");
+            email.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailString).matches()) {
+            email.setError("Please provide a valid email!");
+            email.requestFocus();
+            return;
+        }
+        if (passwordString.isEmpty()) {
+            password.setError("Password is required!");
+            password.requestFocus();
+            return;
+        }
+        if (passwordString.length() < 6) {
+            password.setError("Password must have at least 6 characters!");
+            password.requestFocus();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        authViewModel.signIn(emailString,passwordString).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean) {
+                    User user = authViewModel.getCurrentUser().getValue();
+                    if(user != null){
+                        Toast.makeText(getActivity(), "Login passed successfully!", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                        ((TextView)getActivity().findViewById(R.id.header_username)).setText("Logged as : " + user.userName);
+                        Navigation.findNavController(getView()).navigate(R.id.action_log_in_fragment_to_event_interface_fragment);
+                    }else{
+                        Toast.makeText(getActivity(), "Login failed! Check your credentials!", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Login failed! Check your credentials!", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+                log_in_button.setEnabled(true);
+            }
+        });
     }
 }

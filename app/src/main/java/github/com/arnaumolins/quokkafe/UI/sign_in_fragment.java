@@ -159,7 +159,7 @@ public class sign_in_fragment extends Fragment {
                 if (user != null) {
                     Toast.makeText(getActivity(), "User has been registered successfully!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
-                    Navigation.findNavController(getView()).navigate(R.id.action_sign_in_fragment_to_log_in_fragment);
+                    Navigation.findNavController(getView()).navigate(R.id.action_sign_in_fragment_to_event_interface_fragment);
                     signinButton.setEnabled(true);
                 } else {
                     Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();

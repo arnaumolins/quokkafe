@@ -23,12 +23,21 @@
         android:label="fragment_sign_in_fragment"
         tools:layout="@layout/fragment_sign_in_fragment" >
         <action
-            android:id="@+id/action_sign_in_fragment_to_log_in_fragment"
-            app:destination="@id/log_in_fragment" />
+            android:id="@+id/action_sign_in_fragment_to_event_interface_fragment"
+            app:destination="@id/event_interface_fragment" />
     </fragment>
     <fragment
         android:id="@+id/log_in_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.log_in_fragment"
         android:label="fragment_log_in_fragment"
-        tools:layout="@layout/fragment_log_in_fragment" />
+        tools:layout="@layout/fragment_log_in_fragment" >
+        <action
+            android:id="@+id/action_log_in_fragment_to_event_interface_fragment"
+            app:destination="@id/event_interface_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/event_interface_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.event_interface_fragment"
+        android:label="fragment_event_interface_fragment"
+        tools:layout="@layout/fragment_event_interface_fragment" />
 </navigation>
