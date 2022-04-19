@@ -83,13 +83,13 @@ public class AuthRepository {
         return signInEnd;
     }
 
-    public MutableLiveData<User> firebaseSignUp(String username, String email, String password, List<String> interestedIn) {
+    public MutableLiveData<User> firebaseSignUp(String username, String email, String password, Integer age, List<String> interestedIn) {
         MutableLiveData<User> userMutableLiveData = new MutableLiveData<>();
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    User user = new User(username, email, 18, interestedIn);
+                    User user = new User(username, email, age, interestedIn);
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

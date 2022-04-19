@@ -45,7 +45,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintBottom_toTopOf="@+id/listView_interests"/>
+        app:layout_constraintBottom_toTopOf="@+id/yearsOld"/>
+
+    <EditText
+        android:id="@+id/yearsOld"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Age"
+        android:inputType="number"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/listView_interests"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password">
+
+    </EditText>
 
     <ListView
         android:id="@+id/listView_interests"
@@ -55,7 +70,7 @@
         app:layout_constraintBottom_toTopOf="@+id/sign_in_action"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password">
+        app:layout_constraintTop_toBottomOf="@+id/yearsOld">
 
     </ListView>
 

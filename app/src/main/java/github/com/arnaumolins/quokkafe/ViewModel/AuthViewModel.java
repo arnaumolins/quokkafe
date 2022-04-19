@@ -24,8 +24,8 @@ public class AuthViewModel extends ViewModel {
         return authRepository.firebaseSignIn(email, password);
     }
 
-    public MutableLiveData<User> signUp(String username, String email, String password, List<String> interestedIn) {
-        return authRepository.firebaseSignUp(username, email, password, interestedIn);
+    public MutableLiveData<User> signUp(String username, String email, String password, Integer age,  List<String> interestedIn) {
+        return authRepository.firebaseSignUp(username, email, password, age, interestedIn);
     }
 
     public void signOut() {

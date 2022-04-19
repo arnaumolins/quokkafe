@@ -54,7 +54,7 @@ public class sign_in_fragment extends Fragment {
     }
 
     private ListView interestsList;
-    private EditText username, email, password;
+    private EditText username, email, password, age;
     private Button signinButton;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
@@ -69,6 +69,7 @@ public class sign_in_fragment extends Fragment {
         username = (EditText) view.findViewById(R.id.username);
         email = (EditText) view.findViewById(R.id.email);
         password = (EditText) view.findViewById(R.id.password);
+        age = (EditText) view.findViewById(R.id.yearsOld);
         signinButton = (Button) view.findViewById(R.id.sign_in_action);
         interestsList = (ListView) view.findViewById(R.id.listView_interests);
 
@@ -85,7 +86,8 @@ public class sign_in_fragment extends Fragment {
         String usernameString = username.getText().toString().trim();
         String emailString = email.getText().toString().trim();
         String passwordString = password.getText().toString().trim();
-        String uniqueID = UUID.randomUUID().toString();
+        String ageString = age.getText().toString().trim();
+        Integer ageInt = Integer.parseInt(ageString);
         List<String> interestsStrings = new ArrayList<String>();
 
         for (int i = 0; i < interestsList.getCount(); i++){
@@ -117,6 +119,11 @@ public class sign_in_fragment extends Fragment {
         if (passwordString.length() < 6) {
             password.setError("Password must have at least 6 characters!");
             password.requestFocus();
+            return;
+        }
+        if (ageInt < 16){
+            age.setError("Age must be higher than 16 years old!");
+            age.requestFocus();
             return;
         }
         if (interestsStrings.isEmpty()) {
@@ -153,7 +160,7 @@ public class sign_in_fragment extends Fragment {
         });*/
 
         AuthViewModel authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
-        authViewModel.signUp(usernameString, emailString, passwordString, interestsStrings).observe(getViewLifecycleOwner(), new Observer<User>() {
+        authViewModel.signUp(usernameString, emailString, passwordString, ageInt, interestsStrings).observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
                 if (user != null) {
