@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -171,6 +172,7 @@ public class sign_in_fragment extends Fragment {
                 if (user != null) {
                     Toast.makeText(getActivity(), "User has been registered successfully!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
+                    ((TextView)getActivity().findViewById(R.id.header_username)).setText("Logged as : " + user.userName);
                     Navigation.findNavController(getView()).navigate(R.id.action_sign_in_fragment_to_event_interface_fragment);
                     signinButton.setEnabled(true);
                 } else {
