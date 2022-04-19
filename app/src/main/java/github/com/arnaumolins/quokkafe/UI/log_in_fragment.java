@@ -1,15 +1,19 @@
 package github.com.arnaumolins.quokkafe.UI;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -52,8 +56,12 @@ public class log_in_fragment extends Fragment {
         password = (EditText) view.findViewById(R.id.password_log);
         log_in_button = (Button) view.findViewById(R.id.log_in_action);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar2);
+        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
         log_in_button.setOnClickListener(l -> {
+            log_in_button.setEnabled(false);
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
             logInFunction();
         });
         return view;
@@ -86,12 +94,14 @@ public class log_in_fragment extends Fragment {
 
         progressBar.setVisibility(View.VISIBLE);
 
+
         authViewModel.signIn(emailString,passwordString).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean) {
                     User user = authViewModel.getCurrentUser().getValue();
                     if(user != null){
+                        Log.d("TAG", user.userName);
                         Toast.makeText(getActivity(), "Login passed successfully!", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
                         ((TextView)getActivity().findViewById(R.id.header_username)).setText("Logged as : " + user.userName);
