@@ -86,8 +86,7 @@ public class sign_in_fragment extends Fragment {
         String usernameString = username.getText().toString().trim();
         String emailString = email.getText().toString().trim();
         String passwordString = password.getText().toString().trim();
-        String ageString = age.getText().toString().trim();
-        Integer ageInt = Integer.parseInt(ageString);
+        String ageString = age.getText().toString();
         List<String> interestsStrings = new ArrayList<String>();
 
         for (int i = 0; i < interestsList.getCount(); i++){
@@ -121,6 +120,12 @@ public class sign_in_fragment extends Fragment {
             password.requestFocus();
             return;
         }
+        if (ageString.isEmpty()){
+            age.setError("Age is required!");
+            age.requestFocus();
+            return;
+        }
+        Integer ageInt = Integer.parseInt(ageString);
         if (ageInt < 16){
             age.setError("Age must be higher than 16 years old!");
             age.requestFocus();
