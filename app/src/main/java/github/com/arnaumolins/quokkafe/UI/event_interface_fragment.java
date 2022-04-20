@@ -14,10 +14,12 @@ import java.util.ArrayList;
 
 import github.com.arnaumolins.quokkafe.Model.Event;
 import github.com.arnaumolins.quokkafe.R;
+import github.com.arnaumolins.quokkafe.utils.EventListAdapter;
 
 public class event_interface_fragment extends Fragment {
 
     RecyclerView eventRV;
+    EventListAdapter eventListAdapter;
 
 
 
@@ -46,6 +48,9 @@ public class event_interface_fragment extends Fragment {
         eventRV = getActivity().findViewById(R.id.eventRV);
         eventRV.hasFixedSize();
         eventRV.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        eventListAdapter = new EventListAdapter();
+        eventRV.setAdapter(eventListAdapter);
 
         return view;
     }
