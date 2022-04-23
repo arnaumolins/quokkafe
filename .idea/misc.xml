@@ -3,14 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/drawer_header.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/fragment_assisting_events_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/fragment_event_interface_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/fragment_log_in_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/fragment_sign_in_fragment.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/fragment_starting_page_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/menu/drawer_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/menu/top_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/menu/top_navigation_menu.xml" value="0.20416666666666666" />
       </map>
     </option>

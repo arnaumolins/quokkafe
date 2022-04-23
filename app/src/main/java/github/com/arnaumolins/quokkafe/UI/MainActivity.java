@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.Menu;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -58,5 +59,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.top_navigation_menu, menu);
+        return true;
     }
 }
