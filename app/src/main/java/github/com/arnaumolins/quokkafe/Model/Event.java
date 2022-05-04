@@ -1,50 +1,45 @@
 package github.com.arnaumolins.quokkafe.Model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Event {
-    private int eventId;
-    private int guestId;
-    private String theme;
+    private String eventName;
+    private String eventId;
+    private String interest;
     private String eventDescription;
     private List<User> assistants;
-    private Date date;
+    private String date;
 
     public Event() {}
 
-    public Event(int eventId, int guestId, String theme, String eventDescription, Date date) {
+    public Event(String eventId, String eventName, String eventDescription, String date, String interest, List<User> assistants) {
         this.eventId = eventId;
-        this.guestId = guestId;
-        this.theme = theme;
+        this.eventName = eventName;
         this.eventDescription = eventDescription;
-        assistants = new ArrayList<>();
         this.date = date;
+        this.interest = interest;
+        this.assistants = assistants;
     }
 
-    public int getEventId() {
+    public String getEventName(){return eventName;}
+
+    public void setEventName(String eventName){this.eventName = eventName;}
+
+    public String getEventId() {
         return eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(String eventId) {
         this.eventId = eventId;
     }
 
-    public int getGuestId() {
-        return guestId;
+    public String getInterest() {
+        return interest;
     }
 
-    public void setGuestId(int guestId) {
-        this.guestId = guestId;
-    }
-
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
+    public void setInterest(String interest) {
+        this.interest = interest;
     }
 
     public String getEventDescription() {
@@ -63,11 +58,11 @@ public class Event {
         this.assistants = assistants;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
