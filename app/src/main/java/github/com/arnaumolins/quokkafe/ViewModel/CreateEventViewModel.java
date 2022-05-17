@@ -22,5 +22,4 @@ public class CreateEventViewModel extends ViewModel {
         return ImageRepository.getInstance().uploadImage(imagePath, uriMutableLiveData);
 
     }
-
 }

@@ -1,33 +1,32 @@
 package github.com.arnaumolins.quokkafe.Model;
 
 public class Table {
-    private int tableId;
-    private int tableNumber;
+    private String tableId;
+    private String tableNumber;
     private int numberOfCustomers;
-    private boolean isAvailable;
+    private Boolean isAvailable;
 
     public Table() {}
 
-    public Table(int tableId, int tableNumber, int numberOfCustomers) {
-        this.tableId = tableId;
+    public Table(String tableNumber, int numberOfCustomers) {
         this.tableNumber = tableNumber;
         this.numberOfCustomers = numberOfCustomers;
         this.isAvailable = true;
     }
 
-    public int getTableId() {
+    public String getTableId() {
         return tableId;
     }
 
-    public void setTableId(int tableId) {
+    public void setTableId(String tableId) {
         this.tableId = tableId;
     }
 
-    public int getTableNumber() {
+    public String getTableNumber() {
         return tableNumber;
     }
 
-    public void setTableNumber(int tableNumber) {
+    public void setTableNumber(String tableNumber) {
         this.tableNumber = tableNumber;
     }
 
@@ -39,12 +38,16 @@ public class Table {
         this.numberOfCustomers = numberOfCustomers;
     }
 
-    public boolean isAvailable() {
+    public Boolean isAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(Boolean available) {
         isAvailable = available;
+    }
+
+    public String getImagePath() {
+        return getTableId() + "/" + getTableId() + ".jpg";
     }
 
 }

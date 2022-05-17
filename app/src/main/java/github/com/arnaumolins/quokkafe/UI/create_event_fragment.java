@@ -1,18 +1,13 @@
 package github.com.arnaumolins.quokkafe.UI;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,24 +18,28 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-
-import androidx.lifecycle.Observer;
 
 import github.com.arnaumolins.quokkafe.Model.Event;
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
 import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
 import github.com.arnaumolins.quokkafe.ViewModel.CreateEventViewModel;
-import static android.app.Activity.RESULT_OK;
 
 public class create_event_fragment extends Fragment {
 
@@ -193,11 +192,10 @@ public class create_event_fragment extends Fragment {
         }
 
         eventInterest = interestSpinner.getSelectedItem().toString();
-        List<User> assistants = new ArrayList<User>();
         Log.d("CreatingEventFragment", "1");
         progressBar.setVisibility(View.VISIBLE);
         MutableLiveData<User> userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
-        Event event = new Event("null", eventNameString, eventDescriptionString, startEventDateString, eventInterest, assistants);
+        Event event = new Event("null", eventNameString, eventDescriptionString, startEventDateString, eventInterest);
         MutableLiveData<Event> eventMutableLiveData = new MutableLiveData<>();
         eventMutableLiveData.setValue(event);
 
@@ -207,24 +205,12 @@ public class create_event_fragment extends Fragment {
                 if (setEventFinished != null && setEventFinished) {
                     Log.d("TAG2", event.getEventName());
                     String imagePath = event.getEventId() + "/" + event.getEventId() + ".jpg";
-                    createEventViewModel.setEventImage(imagePath, filePathLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-                        @Override
-                        public void onChanged(Boolean setImageFinished) {
-                            if (setImageFinished != null && setImageFinished) {
-                                Log.d("TAG", "Event with id " + event.getEventId() + " has been registered successfully.");
-                                Toast.makeText(getActivity(), "Event has been registered successfully!", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                                Navigation.findNavController(getView()).navigate(R.id.action_create_event_fragment_to_inside_view_event_fragment);
-                            } else {
-                                Log.d("TAG", "setting image has failed!");
-                                Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        }
-                    });
+                    createEventViewModel.setEventImage(imagePath, filePathLiveData);
+                    progressBar.setVisibility(View.GONE);
+                    Navigation.findNavController(getView()).navigate(R.id.action_create_event_fragment_to_inside_view_event_fragment);
                 } else {
                     Log.d("TAG", "setting event has returned null!");
-                    Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Failed to register! A Try again!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }

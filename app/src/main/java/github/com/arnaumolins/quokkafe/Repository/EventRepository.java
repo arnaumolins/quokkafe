@@ -99,23 +99,7 @@ public class EventRepository {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "Crated event with id " + eventId);
-                    FirebaseDatabase.getInstance().getReference("Users")
-                            .child(user.getValue().userId)
-                            .child("ownedEventsIds")
-                            .child(eventId)
-                            .setValue(eventId)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Log.d(TAG, "User " + user.getValue().userId + " is owner of " + eventId);
-                                        setEventState.setValue(true);
-                                    }   else{
-                                        Log.e(TAG, "User "+ user.getValue().userId +" is not owner of " + eventId);
-                                        setEventState.setValue(false);
-                                    }
-                                }
-                            });
+                    setEventState.setValue(true);
                 } else {
                     Log.e(TAG, "Can't create event!!!");
                     setEventState.setValue(false);
