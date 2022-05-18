@@ -1,5 +1,5 @@
 package github.com.arnaumolins.quokkafe.UI;
-/*
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-
+/*
 import github.com.arnaumolins.quokkafe.Model.Table;
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
@@ -25,9 +25,9 @@ import github.com.arnaumolins.quokkafe.Utils.TableItemAction;
 import github.com.arnaumolins.quokkafe.Utils.TableListAdapter;
 import github.com.arnaumolins.quokkafe.ViewModel.AuthViewModel;
 import github.com.arnaumolins.quokkafe.ViewModel.TableViewModel;
-
+*/
 public class table_booking_fragment extends Fragment {
-
+/*
     public table_booking_fragment() {
         // Required empty public constructor
     }
@@ -99,5 +99,5 @@ public class table_booking_fragment extends Fragment {
         });
         Log.d("feedFragment", "4");
         return view;
-    }
-}*/
+    }*/
+}

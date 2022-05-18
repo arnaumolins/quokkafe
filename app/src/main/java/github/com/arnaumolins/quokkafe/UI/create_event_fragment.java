@@ -195,7 +195,11 @@ public class create_event_fragment extends Fragment {
         Log.d("CreatingEventFragment", "1");
         progressBar.setVisibility(View.VISIBLE);
         MutableLiveData<User> userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
-        Event event = new Event("null", eventNameString, eventDescriptionString, startEventDateString, eventInterest);
+        Event event = new Event("null",
+                eventNameString,
+                eventDescriptionString,
+                startEventDateString,
+                eventInterest);
         MutableLiveData<Event> eventMutableLiveData = new MutableLiveData<>();
         eventMutableLiveData.setValue(event);
 
@@ -205,9 +209,21 @@ public class create_event_fragment extends Fragment {
                 if (setEventFinished != null && setEventFinished) {
                     Log.d("TAG2", event.getEventName());
                     String imagePath = event.getEventId() + "/" + event.getEventId() + ".jpg";
-                    createEventViewModel.setEventImage(imagePath, filePathLiveData);
-                    progressBar.setVisibility(View.GONE);
-                    Navigation.findNavController(getView()).navigate(R.id.action_create_event_fragment_to_inside_view_event_fragment);
+                    createEventViewModel.setEventImage(imagePath, filePathLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                        @Override
+                        public void onChanged(Boolean setImageFinished) {
+                            if (setImageFinished != null && setImageFinished){
+                                Log.d("TAG", "Event with id " + event.getEventId() + " has been registered successfully.");
+                                Toast.makeText(getActivity(), "Event has been registered successfully!", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                                Navigation.findNavController(getView()).navigate(R.id.action_create_event_fragment_to_inside_view_event_fragment);
+                            }else{
+                                Log.d("TAG", "setting image has failed!");
+                                Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        }
+                    });
                 } else {
                     Log.d("TAG", "setting event has returned null!");
                     Toast.makeText(getActivity(), "Failed to register! A Try again!", Toast.LENGTH_LONG).show();

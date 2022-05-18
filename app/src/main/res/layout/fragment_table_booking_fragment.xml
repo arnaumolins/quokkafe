@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    
-</FrameLayout>
-    <!--tools:context=".UI.table_booking_fragment">
+    android:orientation="vertical"
+    tools:context=".UI.table_booking_fragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTable"
