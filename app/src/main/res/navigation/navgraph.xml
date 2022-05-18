@@ -34,10 +34,29 @@
         <action
             android:id="@+id/action_log_in_fragment_to_event_interface_fragment"
             app:destination="@id/event_interface_fragment" />
+        <action
+            android:id="@+id/action_log_in_fragment_to_inside_view_event_fragment"
+            app:destination="@id/inside_view_event_fragment" />
+        <action
+            android:id="@+id/action_log_in_fragment_to_create_event_fragment"
+            app:destination="@id/create_event_fragment" />
     </fragment>
     <fragment
         android:id="@+id/event_interface_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.event_interface_fragment"
         android:label="fragment_event_interface_fragment"
         tools:layout="@layout/fragment_event_interface_fragment" />
+    <fragment
+        android:id="@+id/inside_view_event_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.inside_view_event_fragment"
+        android:label="fragment_inside_view_event_fragment"
+        tools:layout="@layout/fragment_inside_view_event_fragment" />
+    <fragment
+        android:id="@+id/create_event_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.create_event_fragment"
+        android:label="create_event_fragment" >
+        <action
+            android:id="@+id/action_create_event_fragment_to_inside_view_event_fragment"
+            app:destination="@id/inside_view_event_fragment" />
+    </fragment>
 </navigation>

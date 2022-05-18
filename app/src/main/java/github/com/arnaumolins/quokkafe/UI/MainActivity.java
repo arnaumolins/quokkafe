@@ -11,13 +11,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.Menu;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import github.com.arnaumolins.quokkafe.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DrawerController{
 
     BottomNavigationView bottomNav;
     NavController navController;
@@ -58,5 +59,24 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.top_navigation_menu, menu);
+        return true;
+    }
+
+    @Override
+    public void lockDrawerMenu() {
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        mToolbar.setNavigationIcon(null);
+    }
+
+    @Override
+    public void unlockDrawerMenu() {
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        mToolbar.setNavigationIcon(R.drawable.events_icon);
     }
 }

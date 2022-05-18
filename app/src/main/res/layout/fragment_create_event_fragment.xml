@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/createEvent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/ic_baseline_add_circle_24"
+            app:layout_constraintBottom_toTopOf="@+id/EventDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </View>
+
+        <EditText
+            android:id="@+id/eventName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintHorizontal_bias="0"
+            android:hint="Event Name"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/createEvent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </EditText>
+
+
+
+        <EditText
+            android:id="@+id/EventDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="10dp"
+            android:hint="Event Description"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventName">
+
+        </EditText>
+
+
+        <Button
+            android:id="@+id/eventStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/dark_brown"
+            android:text="PICK EVENT DATE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EventDescription" />
+
+        <Spinner
+            android:id="@+id/interestSelection"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventStartDate" />
+
+        <View
+            android:id="@+id/uploadPhotoIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_baseline_add_a_photo_24"
+            app:layout_constraintBottom_toTopOf="@+id/uploadPhotoImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/interestSelection">
+
+        </View>
+
+        <ImageView
+            android:id="@+id/uploadPhotoImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/uploadPhotoText"
+            app:layout_constraintBottom_toBottomOf="parent">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/uploadPhotoText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Upload photo :"
+            android:textColor="@color/white"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintEnd_toStartOf="@+id/uploadPhotoIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/interestSelection">
+
+        </TextView>
+
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ProgressBar>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
