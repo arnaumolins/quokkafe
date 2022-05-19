@@ -28,13 +28,15 @@ public class ImageRepository {
         return instance;
     }
 
-    public MutableLiveData<Boolean> uploadImage(String path, MutableLiveData<Uri> image) {
+    public MutableLiveData<Boolean> uploadImage(String path, @NonNull MutableLiveData<Uri> image) {
         MutableLiveData<Boolean> uploadImageState = new MutableLiveData<>();
         Log.d(TAG, "Uploading image with path images/" + path);
-        FirebaseStorage.getInstance().getReference().child("images/" + path).putFile(image.getValue()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        FirebaseStorage strRef = FirebaseStorage.getInstance();
+        StorageReference imagesRef = strRef.getReference().child("images/" + path);
+        imagesRef.putFile(image.getValue()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.d(TAG, "Image of path images/" + path  + " success on uploading");
+                Log.d(TAG, "Image of path images/" + path  + "success on uploading");
                 uploadImageState.setValue(true);
             }
         }).addOnFailureListener(new OnFailureListener() {
