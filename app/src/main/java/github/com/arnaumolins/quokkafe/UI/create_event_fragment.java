@@ -18,10 +18,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -201,7 +199,7 @@ public class create_event_fragment extends Fragment {
                 eventDescriptionString,
                 startEventDateString,
                 eventInterest,
-                new ArrayList<String>(null));
+                new ArrayList<>(null));
         MutableLiveData<Event> eventMutableLiveData = new MutableLiveData<>();
         eventMutableLiveData.setValue(event);
 

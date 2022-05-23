@@ -16,7 +16,6 @@ public class User {
     public User (String userName, String userEmail, int userAge, List<String> interestedIn) {
         this.userName = userName;
         this.userEmail = userEmail;
-        this.userPassword = userPassword;
         this.userAge = userAge;
         this.userPoints = 0;
         this.interestedIn = interestedIn;

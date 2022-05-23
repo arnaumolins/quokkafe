@@ -54,8 +54,13 @@
     <fragment
         android:id="@+id/inside_view_event_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.inside_view_event_fragment"
-        android:label="fragment_inside_view_event_fragment"
-        tools:layout="@layout/fragment_inside_view_event_fragment" />
+        android:label="inside_view_event_fragment"
+        tools:layout="@layout/fragment_inside_view_event_fragment" >
+        <argument
+            android:name="itemId"
+            app:argType="string"
+            android:defaultValue="-1" />
+    </fragment>
     <fragment
         android:id="@+id/create_event_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.create_event_fragment"

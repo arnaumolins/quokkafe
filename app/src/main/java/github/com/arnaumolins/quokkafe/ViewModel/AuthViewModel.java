@@ -8,7 +8,6 @@ import java.util.List;
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
 
-
 public class AuthViewModel extends ViewModel {
     private AuthRepository authRepository;
 
@@ -31,6 +30,4 @@ public class AuthViewModel extends ViewModel {
     public void signOut() {
         authRepository.firebaseSignOut();
     }
-
-
 }
