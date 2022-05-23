@@ -13,7 +13,6 @@ import github.com.arnaumolins.quokkafe.Repository.ImageRepository;
 
 public class CreateEventViewModel extends ViewModel {
 
-
     public MutableLiveData<Boolean> setEvent(MutableLiveData<Event> event, MutableLiveData<User> user) {
         return EventRepository.getInstance().setEvent(event, user);
     }
