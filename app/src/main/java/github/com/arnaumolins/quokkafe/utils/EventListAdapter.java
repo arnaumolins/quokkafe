@@ -1,4 +1,4 @@
-package github.com.arnaumolins.quokkafe.utils;
+package github.com.arnaumolins.quokkafe.Utils;
 
 import android.content.Context;
 import android.net.Uri;

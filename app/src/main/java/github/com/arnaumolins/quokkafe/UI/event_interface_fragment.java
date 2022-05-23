@@ -5,10 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -35,7 +36,8 @@ public class event_interface_fragment extends Fragment {
 
     private RecyclerView eventRV;
     private Spinner interestSpinner;
-    private EventListAdapter eventListAdapter;
+    private EventListAdapter eventListAdapter, eventListInterestAdapter;
+    private Button searchButton;
 
     AuthViewModel authViewModel;
     EventViewModel eventViewModel;
@@ -71,79 +73,20 @@ public class event_interface_fragment extends Fragment {
 
         Log.d(TAG, "2");
 
+        searchButton = (Button) view.findViewById(R.id.eventSearchButton);
         interestSpinner = (Spinner) view.findViewById(R.id.interestSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.InterestsList, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(R.layout.fragment_event_interface_fragment);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.InterestsList));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         interestSpinner.setAdapter(adapter);
-
-
-        interestSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Object item = adapterView.getItemAtPosition(i);
-                MutableLiveData<ArrayList<Event>> eventsToShow = eventViewModel.getEventWithInterest((String) item);
-                eventsToShow.observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
-                    @Override
-                    public void onChanged(ArrayList<Event> events) {
-                        ArrayList<Event> eventsWithInterest = new ArrayList<>();
-                        if (events != null) {
-                            for (Event event : events) {
-                                for (String interest : user.interestedIn){
-                                    if (event.getInterest().equals(interest)) {
-                                        eventsWithInterest.add(event);
-                                    }
-                                }
-                            }
-                        }
-
-                        eventListAdapter.setEvents(eventsWithInterest);
-                        eventRV.setAdapter(eventListAdapter);
-                        eventListAdapter.notifyDataSetChanged();
-                    }
-                });
-            }
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-                    MutableLiveData<ArrayList<Event>> eventsToShow = eventViewModel.getEventMutableLiveData();
-                    eventsToShow.observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
-                        @Override
-                        public void onChanged(ArrayList<Event> events) {
-                            Log.d(TAG, "patata");
-                            ArrayList<Event> eventsWithInterest = new ArrayList<>();
-                            if (events != null) {
-                                for (Event event : events) {
-                                    for (String interest : user.interestedIn){
-                                        if (event.getInterest().equals(interest)) {
-                                            eventsWithInterest.add(event);
-                                        }
-                                    }
-                                }
-                            }
-
-                            eventListAdapter.setEvents(eventsWithInterest);
-                            eventRV.setAdapter(eventListAdapter);
-                            eventListAdapter.notifyDataSetChanged();
-                        }
-                    });
-                }
-            });
-
+        searchButton.setOnClickListener(l -> {
+            searchButton.setEnabled(false);
+            showEventWithInterest();
+        });
 
         eventRV = view.findViewById(R.id.eventRV);
         eventRV.hasFixedSize();
         eventRV.setLayoutManager(new LinearLayoutManager(getContext()));
-
         eventRV.addItemDecoration(new DividerItemDecoration(eventRV.getContext(), DividerItemDecoration.VERTICAL));
-
-        eventListAdapter = new EventListAdapter(getContext(), new EventItemAction() {
-            @Override
-            public NavDirections navigate(String id) {
-                Navigation.findNavController(getView()).navigate(R.id.action_event_interface_fragment_to_inside_view_event_fragment);
-                return null;
-            }
-        });
-
-        Log.d(TAG, "3");
 
         MutableLiveData<ArrayList<Event>> eventsToShow = eventViewModel.getEventMutableLiveData();
         eventsToShow.observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
@@ -152,8 +95,8 @@ public class event_interface_fragment extends Fragment {
                 ArrayList<Event> eventsWithInterest = new ArrayList<>();
                 if (events != null) {
                     for (Event event : events) {
-                        for (String interest : user.interestedIn){
-                            if (event.getInterest().equals(interest)) {
+                        for (String interested : user.getInterestedIn()){
+                            if (event.getInterest().equals(interested)) {
                                 eventsWithInterest.add(event);
                             }
                         }
@@ -166,6 +109,47 @@ public class event_interface_fragment extends Fragment {
             }
         });
 
+        eventListAdapter = new EventListAdapter(getContext(), new EventItemAction() {
+            @Override
+            public NavDirections navigate(String id) {
+                @NonNull NavDirections action = event_interface_fragmentDirections.actionEventInterfaceFragmentToInsideViewEventFragment();
+                return action;
+            }
+        });
+
         return view;
+    }
+
+    public void showEventWithInterest(){
+
+        eventListInterestAdapter = new EventListAdapter(getContext(), new EventItemAction() {
+            @Override
+            public NavDirections navigate(String id) {
+                @NonNull NavDirections action = event_interface_fragmentDirections.actionEventInterfaceFragmentToInsideViewEventFragment();
+                return action;
+            }
+        });
+
+        String userSearch = interestSpinner.getSelectedItem().toString().trim();
+        MutableLiveData<ArrayList<Event>> eventsToShow = eventViewModel.getEventMutableLiveData();
+        eventsToShow.observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
+            @Override
+            public void onChanged(ArrayList<Event> events) {
+                ArrayList<Event> eventsWithInterest = new ArrayList<>();
+                if (events != null) {
+                    for (Event event : events) {
+                        if (event.getInterest().equals(userSearch)) {
+                            eventsWithInterest.add(event);
+                        }
+                    }
+                }
+
+                eventListInterestAdapter.setEvents(eventsWithInterest);
+                eventRV.setAdapter(eventListInterestAdapter);
+                eventListInterestAdapter.notifyDataSetChanged();
+                searchButton.setEnabled(true);
+            }
+        });
+
     }
 }

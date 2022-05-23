@@ -8,10 +8,20 @@
 
     <Spinner
         android:id="@+id/interestSpinner"
-        android:layout_width="360dp"
+        android:layout_width="300dp"
         android:layout_height="53dp"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp" />
+        android:layout_marginStart="20dp"/>
+
+    <Button
+        android:id="@+id/eventSearchButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="SEARCH"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventRV"
