@@ -33,6 +33,7 @@ import androidx.navigation.Navigation;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import github.com.arnaumolins.quokkafe.Model.Event;

@@ -8,7 +8,7 @@ public class Event {
     private String eventId;
     private String interest;
     private String eventDescription;
-    private List<User> assistants;
+    private List<String> assistants;
     private String date;
 
     public Event() {}
@@ -19,6 +19,7 @@ public class Event {
         this.eventDescription = eventDescription;
         this.date = date;
         this.interest = interest;
+        assistants = new ArrayList<String>();
     }
 
     public String getEventName(){return eventName;}
@@ -49,12 +50,12 @@ public class Event {
         this.eventDescription = eventDescription;
     }
 
-    public List<User> getAssistants() {
+    public List<String> getAssistants() {
         return assistants;
     }
 
-    public void setAssistants(List<User> assistants) {
-        this.assistants = assistants;
+    public void setAssistant(String assistant) {
+        assistants.add(assistant);
     }
 
     public String getDate() {
