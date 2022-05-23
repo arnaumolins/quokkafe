@@ -4,23 +4,22 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import github.com.arnaumolins.quokkafe.Model.Event;
 import github.com.arnaumolins.quokkafe.Repository.EventRepository;
 
 public class EventViewModel extends ViewModel {
 
-    EventRepository eventRepository = EventRepository.getInstance();
-
     public MutableLiveData<ArrayList<Event>> getEventMutableLiveData() {
         return EventRepository.getInstance().getAllEvents();
     }
 
-    public MutableLiveData<ArrayList<Event>> getEventWithTheme(String theme) {
+    public MutableLiveData<ArrayList<Event>> getEventWithInterest(String interest) {
         MutableLiveData<ArrayList<Event>> eventThemeLiveData = new MutableLiveData<>();
         ArrayList<Event> events = new ArrayList<>();
-        for (Event event : EventRepository.getInstance().getAllEvents().getValue()) {
-            if (event.getTheme().equals(theme)) {
+        for (Event event : Objects.requireNonNull(EventRepository.getInstance().getAllEvents().getValue())) {
+            if (event.getInterest().equals(interest)) {
                 events.add(event);
             }
         }

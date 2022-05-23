@@ -3,11 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.event_interface_fragment">
+    tools:context=".UI.event_interface_fragment"
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <Spinner
+        android:id="@+id/interestSpinner"
+        android:layout_width="360dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp" />
+
+    <view class="androidx.appcompat.app.AlertController$RecycleListView"
+        android:id="@+id/eventRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/eventRV" />
+        android:layout_margin="20dp"/>
 
 </LinearLayout>

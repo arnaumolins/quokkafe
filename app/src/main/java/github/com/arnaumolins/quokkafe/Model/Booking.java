@@ -1,17 +1,15 @@
 package github.com.arnaumolins.quokkafe.Model;
 
-import java.util.Date;
-
 public class Booking {
-    private int bookingId;
-    private int tableId;
-    private int userId;
-    private Date initDate;
-    private Date endDate;
+    private String bookingId;
+    private String tableId;
+    private String userId;
+    private String initDate;
+    private String endDate;
 
     public Booking() {}
 
-    public Booking(int bookingId, int tableId, int userId, Date initDate, Date endDate) {
+    public Booking(String bookingId, String tableId, String userId, String initDate, String endDate) {
         this.bookingId = bookingId;
         this.tableId = tableId;
         this.userId = userId;
@@ -19,43 +17,43 @@ public class Booking {
         this.endDate = endDate;
     }
 
-    public int getBookingId() {
+    public String getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(int bookingId) {
+    public void setBookingId(String bookingId) {
         this.bookingId = bookingId;
     }
 
-    public int getTableId() {
+    public String getTableId() {
         return tableId;
     }
 
-    public void setTableId(int tableId) {
+    public void setTableId(String tableId) {
         this.tableId = tableId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Date getInitDate() {
+    public String getInitDate() {
         return initDate;
     }
 
-    public void setInitDate(Date initDate) {
+    public void setInitDate(String initDate) {
         this.initDate = initDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 }

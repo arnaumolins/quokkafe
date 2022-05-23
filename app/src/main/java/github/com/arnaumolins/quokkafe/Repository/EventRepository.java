@@ -44,7 +44,7 @@ public class EventRepository {
                     if (event != null) {
                         Log.d("debug", event.getEventId());
                         Log.d("debug", event.getEventName());
-                        Log.d("debug", event.getTheme());
+                        Log.d("debug", event.getInterest());
                         Log.d("debug", event.getEventDescription());
                         eventMutableLiveData.setValue(event);
                     } else {
