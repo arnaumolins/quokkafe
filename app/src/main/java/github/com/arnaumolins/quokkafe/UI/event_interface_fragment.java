@@ -112,7 +112,8 @@ public class event_interface_fragment extends Fragment {
         eventListAdapter = new EventListAdapter(getContext(), new EventItemAction() {
             @Override
             public NavDirections navigate(String id) {
-                @NonNull NavDirections action = event_interface_fragmentDirections.actionEventInterfaceFragmentToInsideViewEventFragment();
+                event_interface_fragmentDirections action = event_interface_fragmentDirections.actionEventInterfaceFragmentToInsideViewEventFragment();
+                action.setEventId(id);
                 return action;
             }
         });
@@ -125,7 +126,8 @@ public class event_interface_fragment extends Fragment {
         eventListInterestAdapter = new EventListAdapter(getContext(), new EventItemAction() {
             @Override
             public NavDirections navigate(String id) {
-                @NonNull NavDirections action = event_interface_fragmentDirections.actionEventInterfaceFragmentToInsideViewEventFragment();
+                event_interface_fragmentDirections action = event_interface_fragmentDirections.actionEventInterfaceFragmentToInsideViewEventFragment();
+                action.setEventId(id);
                 return action;
             }
         });
