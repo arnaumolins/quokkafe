@@ -31,7 +31,6 @@ import androidx.navigation.Navigation;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import github.com.arnaumolins.quokkafe.Model.Event;
@@ -198,8 +197,7 @@ public class create_event_fragment extends Fragment {
                 eventNameString,
                 eventDescriptionString,
                 startEventDateString,
-                eventInterest,
-                new ArrayList<>(null));
+                eventInterest);
         MutableLiveData<Event> eventMutableLiveData = new MutableLiveData<>();
         eventMutableLiveData.setValue(event);
 

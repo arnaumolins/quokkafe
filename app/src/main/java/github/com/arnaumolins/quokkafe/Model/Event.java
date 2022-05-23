@@ -8,18 +8,17 @@ public class Event {
     private String eventId;
     private String interest;
     private String eventDescription;
-    private List<String> assistants;
+    private List<String> assistants = new ArrayList<>();
     private String date;
 
     public Event() {}
 
-    public Event(String eventId, String eventName, String eventDescription, String date, String interest, List<String> assistants) {
+    public Event(String eventId, String eventName, String eventDescription, String date, String interest) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.date = date;
         this.interest = interest;
-        this.assistants = assistants;
     }
 
     public String getEventName(){return eventName;}
@@ -54,8 +53,14 @@ public class Event {
         return assistants;
     }
 
-    public void setAssistant(String assistant) {
-        assistants.add(assistant);
+    public void addAssistant(String assistant) {
+        if (!assistants.contains(assistant)) {
+            assistants.add(assistant);
+        }
+    }
+
+    public void removeAssistant(String assistant) {
+        assistants.remove(assistant);
     }
 
     public String getDate() {
@@ -70,12 +75,11 @@ public class Event {
         return getEventId() + "/" + getEventId() + ".jpg";
     }
 
-    public String getAssistansStrings(){
-        String totalAssistants = "";
-        for (String userId : getAssistants()) {
-            totalAssistants += (userId + "\n");
+    public String getAssistansString(){
+        StringBuilder totalAssistants = new StringBuilder();
+        for (String user : getAssistants()) {
+            totalAssistants.append(user).append("\n");
         }
-        return totalAssistants;
+        return totalAssistants.toString();
     }
-
 }

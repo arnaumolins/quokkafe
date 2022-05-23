@@ -43,7 +43,7 @@ public class inside_view_event_fragment extends Fragment {
 
     MutableLiveData<Event> eventLiveData;
     LiveData<String> eventIdLiveData;
-    private TextView eventName, eventInterest, eventDescription, eventDate;
+    private TextView eventName, eventInterest, eventDate, eventDescription, eventUsers;
 
     ViewEventViewModel viewEventViewModel;
     MutableLiveData<User> userMutableLiveData;
@@ -98,7 +98,7 @@ public class inside_view_event_fragment extends Fragment {
                                 if (e == null) {
                                     return Transaction.success(currentData);
                                 }
-                                e.getAssistants().remove(userMutableLiveData.getValue().getUserName());
+                                e.getAssistants().remove(userMutableLiveData.getValue().userName);
                                 currentData.setValue(e);
                                 return Transaction.success(currentData);
                             }
@@ -116,7 +116,11 @@ public class inside_view_event_fragment extends Fragment {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistansStrings());
+                                                User currentUser = AuthRepository.getAuthRepository().getCurrentUser().getValue();
+                                                if (currentUser != null) {
+                                                    e.removeAssistant(currentUser.userName);
+                                                }
+                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistansString());
 
                                                 userAttendsEvent.setValue(false);
                                             }
@@ -143,7 +147,7 @@ public class inside_view_event_fragment extends Fragment {
                                 if (e == null) {
                                     return Transaction.success(currentData);
                                 }
-                                e.setAssistant(userMutableLiveData.getValue().userName);
+                                e.addAssistant(userMutableLiveData.getValue().userName);
                                 currentData.setValue(e);
                                 return Transaction.success(currentData);
                             }
@@ -162,7 +166,11 @@ public class inside_view_event_fragment extends Fragment {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistansStrings());
+                                                User currentUser = AuthRepository.getAuthRepository().getCurrentUser().getValue();
+                                                if (currentUser != null) {
+                                                    e.addAssistant(currentUser.userName);
+                                                }
+                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistansString());
 
                                                 userAttendsEvent.setValue(true);
                                             }
@@ -180,10 +188,12 @@ public class inside_view_event_fragment extends Fragment {
         });
 
         eventName = (TextView) view.findViewById(R.id.eventNamePlaceholder);
+        eventDate = (TextView) view.findViewById(R.id.eventDatePlaceholder);
         eventDescription = (TextView) view.findViewById(R.id.eventDescriptionPlaceholder);
         eventDescription.setMovementMethod(new ScrollingMovementMethod());
-        eventDate = (TextView) view.findViewById(R.id.eventDatePlaceholder);
         eventInterest = (TextView) view.findViewById(R.id.eventInterestPlaceholder);
+        eventUsers = (TextView) view.findViewById(R.id.eventUsersPlaceholder);
+
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Events").child(eventIdLiveData.getValue());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -193,8 +203,9 @@ public class inside_view_event_fragment extends Fragment {
 
                 eventName.setText(event.getEventName());
                 eventInterest.setText(event.getInterest());
-                eventDescription.setText(event.getEventDescription());
                 eventDate.setText(event.getDate());
+                eventDescription.setText(event.getEventDescription());
+                eventUsers.setText(event.getAssistansString());
                 ImageRepository.getInstance().getImageUri(event.getImagePath()).observe(getViewLifecycleOwner(), new Observer<Uri>() {
                     @Override
                     public void onChanged(Uri uri) {
