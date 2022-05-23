@@ -37,6 +37,22 @@
         </ImageView>
 
         <TextView
+            android:id="@+id/eventDatePlaceholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:text="XX/XX/XXXX"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/eventDescriptionPlaceholder"
+            app:layout_constraintEnd_toStartOf="@+id/IWillAttend"
+            app:layout_constraintHorizontal_bias="0.596"
+            app:layout_constraintStart_toEndOf="@+id/eventInterestPlaceholder"
+            app:layout_constraintTop_toBottomOf="@+id/eventImagePlaceholder"
+            app:layout_constraintVertical_bias="0.72">
+
+        </TextView>
+
+        <TextView
             android:id="@+id/eventInterestPlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

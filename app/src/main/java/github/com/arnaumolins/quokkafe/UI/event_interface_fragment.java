@@ -26,8 +26,8 @@ import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
 import github.com.arnaumolins.quokkafe.ViewModel.AuthViewModel;
 import github.com.arnaumolins.quokkafe.ViewModel.EventViewModel;
-import github.com.arnaumolins.quokkafe.utils.EventItemAction;
-import github.com.arnaumolins.quokkafe.utils.EventListAdapter;
+import github.com.arnaumolins.quokkafe.Utils.EventItemAction;
+import github.com.arnaumolins.quokkafe.Utils.EventListAdapter;
 
 public class event_interface_fragment extends Fragment {
 
@@ -61,9 +61,8 @@ public class event_interface_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_event_interface_fragment, container, false);
-
         Log.d(TAG, "1");
+        View view = inflater.inflate(R.layout.fragment_event_interface_fragment, container, false);
 
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
@@ -76,6 +75,7 @@ public class event_interface_fragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.InterestsList, androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.fragment_event_interface_fragment);
         interestSpinner.setAdapter(adapter);
+
 
         interestSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -102,12 +102,32 @@ public class event_interface_fragment extends Fragment {
                     }
                 });
             }
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    MutableLiveData<ArrayList<Event>> eventsToShow = eventViewModel.getEventMutableLiveData();
+                    eventsToShow.observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
+                        @Override
+                        public void onChanged(ArrayList<Event> events) {
+                            Log.d(TAG, "patata");
+                            ArrayList<Event> eventsWithInterest = new ArrayList<>();
+                            if (events != null) {
+                                for (Event event : events) {
+                                    for (String interest : user.interestedIn){
+                                        if (event.getInterest().equals(interest)) {
+                                            eventsWithInterest.add(event);
+                                        }
+                                    }
+                                }
+                            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+                            eventListAdapter.setEvents(eventsWithInterest);
+                            eventRV.setAdapter(eventListAdapter);
+                            eventListAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+            });
 
-            }
-        });
 
         eventRV = view.findViewById(R.id.eventRV);
         eventRV.hasFixedSize();

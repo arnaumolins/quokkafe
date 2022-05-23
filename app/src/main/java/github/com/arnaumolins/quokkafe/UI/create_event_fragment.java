@@ -200,7 +200,8 @@ public class create_event_fragment extends Fragment {
                 eventNameString,
                 eventDescriptionString,
                 startEventDateString,
-                eventInterest);
+                eventInterest,
+                new ArrayList<String>(null));
         MutableLiveData<Event> eventMutableLiveData = new MutableLiveData<>();
         eventMutableLiveData.setValue(event);
 

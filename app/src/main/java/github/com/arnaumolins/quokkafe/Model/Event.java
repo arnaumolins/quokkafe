@@ -13,13 +13,13 @@ public class Event {
 
     public Event() {}
 
-    public Event(String eventId, String eventName, String eventDescription, String date, String interest) {
+    public Event(String eventId, String eventName, String eventDescription, String date, String interest, List<String> assistants) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.date = date;
         this.interest = interest;
-        assistants = new ArrayList<String>();
+        this.assistants = assistants;
     }
 
     public String getEventName(){return eventName;}
@@ -68,6 +68,14 @@ public class Event {
 
     public String getImagePath() {
         return getEventId() + "/" + getEventId() + ".jpg";
+    }
+
+    public String getAssistansStrings(){
+        String totalAssistants = "";
+        for (String userId : getAssistants()) {
+            totalAssistants += (userId + "\n");
+        }
+        return totalAssistants;
     }
 
 }
