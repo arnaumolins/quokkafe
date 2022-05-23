@@ -1,25 +1,25 @@
 package github.com.arnaumolins.quokkafe.Model;
 
 public class Food {
-    private int foodId;
+    private String foodId;
     private String foodName;
     private String foodDescription;
     private float foodPrice;
 
     public Food() {}
 
-    public Food (int foodId, String foodName, String foodDescription, float foodPrice) {
+    public Food (String foodId, String foodName, String foodDescription, float foodPrice) {
         this.foodId = foodId;
         this.foodName = foodName;
         this.foodDescription = foodDescription;
         this.foodPrice = foodPrice;
     }
 
-    public int getFoodId() {
+    public String getFoodId() {
         return foodId;
     }
 
-    public void setFoodId(int foodId) {
+    public void setFoodId(String foodId) {
         this.foodId = foodId;
     }
 
@@ -46,5 +46,4 @@ public class Food {
     public void setFoodPrice(float foodPrice) {
         this.foodPrice = foodPrice;
     }
-
 }

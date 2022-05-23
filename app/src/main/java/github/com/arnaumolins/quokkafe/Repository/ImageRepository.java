@@ -49,7 +49,7 @@ public class ImageRepository {
         return uploadImageState;
     }
 
-   public MutableLiveData<Boolean> changeImage(String path, MutableLiveData<Uri> image){
+   public MutableLiveData<Boolean> changeImage(String path, MutableLiveData<Uri> image) {
         MutableLiveData<Boolean> changeImageState = new MutableLiveData<>();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference("images/" + path);
         Log.d(TAG, "images/" + path);

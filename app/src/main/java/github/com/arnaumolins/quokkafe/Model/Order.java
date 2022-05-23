@@ -3,32 +3,32 @@ package github.com.arnaumolins.quokkafe.Model;
 import java.util.List;
 
 public class Order {
-    private int orderId;
-    private int tableId;
+    private String orderId;
+    private String tableId;
     private List<Food> foodList;
     private float totalPrice;
 
     public Order() {}
 
-    public Order(int orderId, int tableId, List<Food> foodList) {
+    public Order(String orderId, String tableId, List<Food> foodList) {
         this.orderId = orderId;
         this.tableId = tableId;
         this.foodList = foodList;
     }
 
-    public int getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
-    public int getTableId() {
+    public String getTableId() {
         return tableId;
     }
 
-    public void setTableId(int tableId) {
+    public void setTableId(String tableId) {
         this.tableId = tableId;
     }
 
@@ -45,9 +45,5 @@ public class Order {
             totalPrice += food.getFoodPrice();
         }
         return totalPrice;
-    }
-
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
     }
 }
