@@ -4,14 +4,14 @@ public class Table {
     private String tableId;
     private String tableNumber;
     private int numberOfCustomers;
-    private Boolean isAvailable;
+    private Boolean isAvailable = true;
 
     public Table() {}
 
-    public Table(String tableNumber, int numberOfCustomers) {
+    public Table(String tableId, String tableNumber, int numberOfCustomers) {
+        this.tableId = tableId;
         this.tableNumber = tableNumber;
         this.numberOfCustomers = numberOfCustomers;
-        this.isAvailable = true;
     }
 
     public String getTableId() {
