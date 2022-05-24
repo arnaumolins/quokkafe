@@ -1,10 +1,12 @@
 package github.com.arnaumolins.quokkafe.UI;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -12,8 +14,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 import github.com.arnaumolins.quokkafe.R;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements DrawerController{
     Toolbar mToolbar;
     AppBarConfiguration appBarConfiguration;
     DrawerLayout drawerLayout;
+    event_interface_fragment eventFragment = new event_interface_fragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +54,28 @@ public class MainActivity extends AppCompatActivity implements DrawerController{
 
         //bottom bar
         bottomNav = findViewById(R.id.bottom_navigation);
-        NavigationUI.setupWithNavController(bottomNav, navController);
+        getSupportFragmentManager().beginTransaction().replace(R.id.navHostFragment,eventFragment).commit();
+        bottomNav.setOnItemSelectedListener(navListener);
+        //NavigationUI.setupWithNavController(bottomNav, navController);
+
     }
+
+    private NavigationBarView.OnItemSelectedListener navListener = new NavigationBarView.OnItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
+            switch (item.getItemId()){
+                case R.id.event_interface_bottom:
+                    selectedFragment = new event_interface_fragment();
+                    break;
+                case R.id.table_booking_bottom:
+                    selectedFragment = new table_booking_fragment();
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.navHostFragment, selectedFragment).commit();
+            return true;
+        }
+    };
 
     @Override
     public void onBackPressed() {

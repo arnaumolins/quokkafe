@@ -96,7 +96,7 @@ public class event_interface_fragment extends Fragment {
                 ArrayList<Event> eventsWithInterest = new ArrayList<>();
                 if (events != null) {
                     for (Event event : events) {
-                        for (String interested : user.getInterestedIn()){
+                        for (String interested : user.interestedIn){
                             if (event.getInterest().equals(interested)) {
                                 eventsWithInterest.add(event);
                             }

@@ -32,7 +32,7 @@ import github.com.arnaumolins.quokkafe.R;
 import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
 import github.com.arnaumolins.quokkafe.Repository.ImageRepository;
 import github.com.arnaumolins.quokkafe.ViewModel.ViewTableViewModel;
-/***
+
 public class inside_view_table_fragment extends Fragment {
     MutableLiveData<Table> tableLiveData;
     LiveData<String> tableIdLiveData;
@@ -134,4 +134,4 @@ public class inside_view_table_fragment extends Fragment {
 
         return view;
     }
-}***/
+}
