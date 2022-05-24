@@ -1,5 +1,7 @@
 package github.com.arnaumolins.quokkafe.ViewModel;
 
-public class ViewTableViewModel {
-    //TODO
+import androidx.lifecycle.ViewModel;
+
+public class ViewTableViewModel extends ViewModel {
+    //TODO use this
 }

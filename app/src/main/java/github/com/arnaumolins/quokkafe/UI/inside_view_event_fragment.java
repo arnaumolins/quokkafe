@@ -193,7 +193,6 @@ public class inside_view_event_fragment extends Fragment {
         eventInterest = (TextView) view.findViewById(R.id.eventInterestPlaceholder);
         eventUsers = (TextView) view.findViewById(R.id.eventUsersPlaceholder);
 
-
         Query query = FirebaseDatabase.getInstance().getReference().child("Events").child(eventIdLiveData.getValue());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

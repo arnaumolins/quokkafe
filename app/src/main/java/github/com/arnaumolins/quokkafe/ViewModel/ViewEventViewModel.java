@@ -9,10 +9,12 @@ import github.com.arnaumolins.quokkafe.Repository.ImageRepository;
 
 public class ViewEventViewModel extends ViewModel {
 
+    // TODO delete this
     public MutableLiveData<Boolean> deleteEvent(String eventId) {
         return EventRepository.getInstance().deleteEvent(eventId);
     }
 
+    // TODO delete this
     public MutableLiveData<Boolean> deleteEventImage(String imgPath) {
         return ImageRepository.getInstance().deleteImage(imgPath);
     }
