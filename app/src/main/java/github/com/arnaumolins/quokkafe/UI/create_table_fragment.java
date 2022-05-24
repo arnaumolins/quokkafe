@@ -156,7 +156,7 @@ public class create_table_fragment extends Fragment {
                                 Log.d("TAG", "Event with id " + table.getTableId() + " has been registered successfully.");
                                 Toast.makeText(getActivity(), "Event has been registered successfully!", Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.GONE);
-                                Navigation.findNavController(getView()).navigate(R.id.action_create_table_fragment_to_log_in_fragment);
+                                //Navigation.findNavController(getView()).navigate(R.id.action_create_table_fragment_to_log_in_fragment);
                             }else{
                                 Log.d("TAG", "setting image has failed!");
                                 Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();

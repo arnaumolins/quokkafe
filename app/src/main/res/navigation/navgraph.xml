@@ -34,15 +34,6 @@
         <action
             android:id="@+id/action_log_in_fragment_to_event_interface_fragment"
             app:destination="@id/event_interface_fragment" />
-        <action
-            android:id="@+id/action_log_in_fragment_to_inside_view_event_fragment"
-            app:destination="@id/inside_view_event_fragment" />
-        <action
-            android:id="@+id/action_log_in_fragment_to_create_event_fragment"
-            app:destination="@id/create_event_fragment" />
-        <action
-            android:id="@+id/action_log_in_fragment_to_create_table_fragment"
-            app:destination="@id/create_table_fragment" />
     </fragment>
     <fragment
         android:id="@+id/event_interface_fragment"
@@ -67,11 +58,7 @@
     <fragment
         android:id="@+id/create_event_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.create_event_fragment"
-        android:label="create_event_fragment" >
-        <action
-            android:id="@+id/action_create_event_fragment_to_inside_view_event_fragment"
-            app:destination="@id/inside_view_event_fragment" />
-    </fragment>
+        android:label="create_event_fragment" />
     <fragment
         android:id="@+id/table_booking_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.table_booking_fragment"
@@ -95,9 +82,5 @@
         android:id="@+id/create_table_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.create_table_fragment"
         android:label="fragment_create_table_fragment"
-        tools:layout="@layout/fragment_create_table_fragment" >
-        <action
-            android:id="@+id/action_create_table_fragment_to_log_in_fragment"
-            app:destination="@id/log_in_fragment" />
-    </fragment>
+        tools:layout="@layout/fragment_create_table_fragment" />
 </navigation>
