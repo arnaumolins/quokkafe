@@ -69,4 +69,23 @@
             android:id="@+id/action_create_event_fragment_to_inside_view_event_fragment"
             app:destination="@id/inside_view_event_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/table_booking_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.table_booking_fragment"
+        android:label="fragment_table_booking_fragment"
+        tools:layout="@layout/fragment_table_booking_fragment" >
+        <action
+            android:id="@+id/action_table_booking_fragment_to_inside_view_table_fragment"
+            app:destination="@id/inside_view_table_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inside_view_table_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.inside_view_table_fragment"
+        android:label="fragment_inside_view_table_fragment"
+        tools:layout="@layout/fragment_inside_view_table_fragment" >
+        <argument
+            android:name="itemId"
+            app:argType="string"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>

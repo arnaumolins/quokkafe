@@ -25,7 +25,6 @@ import github.com.arnaumolins.quokkafe.Model.Event;
 import github.com.arnaumolins.quokkafe.R;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.ViewHolder> {
-
     public static final String TAG = "EventListAdapter";
     private ArrayList<Event> events;
     private final Context context;
@@ -90,7 +89,6 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-
         TextView name, interest, description, date;
         ImageView image;
 
@@ -102,7 +100,5 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
             interest = itemView.findViewById(R.id.event_interest);
             description = itemView.findViewById(R.id.event_description);
         }
-
     }
-
 }

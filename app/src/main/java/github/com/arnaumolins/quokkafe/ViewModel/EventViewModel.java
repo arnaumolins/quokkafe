@@ -10,11 +10,11 @@ import github.com.arnaumolins.quokkafe.Model.Event;
 import github.com.arnaumolins.quokkafe.Repository.EventRepository;
 
 public class EventViewModel extends ViewModel {
-
     public MutableLiveData<ArrayList<Event>> getEventMutableLiveData() {
         return EventRepository.getInstance().getAllEvents();
     }
 
+    // TODO delete this
     public MutableLiveData<ArrayList<Event>> getEventWithInterest(String interest) {
         MutableLiveData<ArrayList<Event>> eventThemeLiveData = new MutableLiveData<>();
         ArrayList<Event> events = new ArrayList<>();
