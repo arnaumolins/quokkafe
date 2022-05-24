@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.inside_view_table_fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tableNumberPlaceholder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginEnd="16dp"
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:text="Table number: "
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/tableImagePlaceholder"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/tableAvailabilityPlaceholder"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableNumberPlaceholder">
+
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tableAvailabilityPlaceholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="19dp"
+            android:text="Availability"
+            app:layout_constraintBottom_toTopOf="@+id/tableCostumersPlaceholder"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tableCostumersPlaceholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginBottom="16dp"
+            android:text="Number of customers"
+            app:layout_constraintBottom_toTopOf="@+id/startingHour"
+            app:layout_constraintEnd_toEndOf="@+id/tableAvailabilityPlaceholder"
+            app:layout_constraintStart_toEndOf="@+id/tableAvailabilityPlaceholder">
+
+        </TextView>
+
+        <DatePicker
+            android:id="@+id/startingHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:datePickerMode="spinner"
+            app:layout_constraintBottom_toTopOf="@+id/endingHour"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </DatePicker>
+
+        <DatePicker
+            android:id="@+id/endingHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:datePickerMode="spinner"
+            app:layout_constraintBottom_toTopOf="@+id/tableBookingButton"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </DatePicker>
+
+        <Button
+            android:id="@+id/tableBookingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="30dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
