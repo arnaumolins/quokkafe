@@ -17,6 +17,7 @@ public class ViewEventViewModel extends ViewModel {
         return ImageRepository.getInstance().deleteImage(imgPath);
     }
 
+    // TODO use this
     public MutableLiveData<Boolean> deleteEventAttendees(String eventId) {
         return AuthRepository.getAuthRepository().deleteEventAttendees(eventId);
     }

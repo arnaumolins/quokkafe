@@ -33,6 +33,7 @@ public class EventRepository {
         return instance;
     }
 
+    // TODO delete this
     public MutableLiveData<Event> getEventById(String eventId) {
         MutableLiveData<Event> eventMutableLiveData = new MutableLiveData<>();
         Log.d("TAG", "getting event with id " + eventId);
@@ -65,6 +66,7 @@ public class EventRepository {
         return eventMutableLiveData;
     }
 
+    // TODO delete this
     public MutableLiveData<Boolean> modifyEvent(MutableLiveData<Event> event) {
         MutableLiveData<Boolean> modifyEventState = new MutableLiveData<>();
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Events");
@@ -84,6 +86,7 @@ public class EventRepository {
         return modifyEventState;
     }
 
+    // TODO delete this
     public MutableLiveData<Boolean> setEvent(MutableLiveData<Event> event, MutableLiveData<User> user) {
         MutableLiveData<Boolean> setEventState = new MutableLiveData<>();
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Events");
@@ -142,6 +145,7 @@ public class EventRepository {
                     }
                     eventsLiveData.setValue(events);
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     Log.e(TAG, "getting all events is cancelled");
@@ -153,6 +157,7 @@ public class EventRepository {
         return eventsLiveData;
     }
 
+    // TODO delete this
     public MutableLiveData<Boolean> deleteEvent(String eventId) {
         MutableLiveData<Boolean> delEvent = new MutableLiveData<>();
         Log.d(TAG, "Deleting event with id " + eventId);

@@ -28,9 +28,6 @@ import github.com.arnaumolins.quokkafe.ViewModel.AuthViewModel;
 import github.com.arnaumolins.quokkafe.ViewModel.EventViewModel;
 
 public class event_interface_fragment extends Fragment {
-
-    public static final String TAG = "Event interface";
-
     private RecyclerView eventRV;
     private Spinner interestSpinner;
     private EventListAdapter eventListAdapter, eventListInterestAdapter;
@@ -49,7 +46,7 @@ public class event_interface_fragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.appbar_top).setVisibility(View.VISIBLE);
