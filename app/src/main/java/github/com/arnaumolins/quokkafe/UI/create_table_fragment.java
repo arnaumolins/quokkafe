@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
@@ -29,6 +30,7 @@ import github.com.arnaumolins.quokkafe.Model.Table;
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
 import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
+import github.com.arnaumolins.quokkafe.ViewModel.CreateEventViewModel;
 import github.com.arnaumolins.quokkafe.ViewModel.CreateTableViewModel;
 
 public class create_table_fragment extends Fragment {
@@ -63,11 +65,13 @@ public class create_table_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_table_fragment, container, false);
+        createTableViewModel = new ViewModelProvider(this).get(CreateTableViewModel.class);
         createButton = (View) view.findViewById(R.id.createEvent2);
         addPhoto = (View) view.findViewById(R.id.uploadPhotoIcon2);
         tableName = (EditText) view.findViewById(R.id.tableName);
         numbCustomers = (EditText) view.findViewById(R.id.numbCustomers);
-        imagePlaceholder = view.findViewById(R.id.uploadPhotoIcon2);
+        imagePlaceholder = view.findViewById(R.id.uploadPhotoImage2);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar4);
 
         addPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +156,7 @@ public class create_table_fragment extends Fragment {
                                 Log.d("TAG", "Event with id " + table.getTableId() + " has been registered successfully.");
                                 Toast.makeText(getActivity(), "Event has been registered successfully!", Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.GONE);
-                                Navigation.findNavController(getView()).navigate(R.id.action_create_event_fragment_to_inside_view_event_fragment);
+                                Navigation.findNavController(getView()).navigate(R.id.action_create_table_fragment_to_log_in_fragment);
                             }else{
                                 Log.d("TAG", "setting image has failed!");
                                 Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();

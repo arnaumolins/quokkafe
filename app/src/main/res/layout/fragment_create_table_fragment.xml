@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:inputType="text"
+            android:hint="Table Name"
             android:padding="10dp"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/createEvent2"
@@ -89,6 +90,19 @@
             app:layout_constraintTop_toBottomOf="@id/numbCustomers">
 
         </TextView>
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ProgressBar>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
