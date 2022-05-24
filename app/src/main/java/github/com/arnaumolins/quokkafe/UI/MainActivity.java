@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements DrawerController{
     Toolbar mToolbar;
     AppBarConfiguration appBarConfiguration;
     DrawerLayout drawerLayout;
-    event_interface_fragment eventFragment = new event_interface_fragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,28 +53,9 @@ public class MainActivity extends AppCompatActivity implements DrawerController{
 
         //bottom bar
         bottomNav = findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.navHostFragment,eventFragment).commit();
-        bottomNav.setOnItemSelectedListener(navListener);
-        //NavigationUI.setupWithNavController(bottomNav, navController);
+        NavigationUI.setupWithNavController(bottomNav, navController);
 
     }
-
-    private NavigationBarView.OnItemSelectedListener navListener = new NavigationBarView.OnItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment = null;
-            switch (item.getItemId()){
-                case R.id.event_interface_bottom:
-                    selectedFragment = new event_interface_fragment();
-                    break;
-                case R.id.table_booking_bottom:
-                    selectedFragment = new table_booking_fragment();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.navHostFragment, selectedFragment).commit();
-            return true;
-        }
-    };
 
     @Override
     public void onBackPressed() {
@@ -87,13 +67,6 @@ public class MainActivity extends AppCompatActivity implements DrawerController{
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.top_navigation_menu, menu);
-        return true;
-    }
-
-    @Override
     public void lockDrawerMenu() {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         mToolbar.setNavigationIcon(null);
@@ -102,6 +75,6 @@ public class MainActivity extends AppCompatActivity implements DrawerController{
     @Override
     public void unlockDrawerMenu() {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        mToolbar.setNavigationIcon(R.drawable.events_icon);
+        mToolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24);
     }
 }

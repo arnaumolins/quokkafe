@@ -42,6 +42,7 @@ public class table_booking_fragment extends Fragment {
         super.onResume();
         getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.appbar_top).setVisibility(View.VISIBLE);
+        ((MainActivity)getActivity()).lockDrawerMenu();
         //TODO Buttons which are visible
     }
 

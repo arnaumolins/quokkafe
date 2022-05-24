@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -50,6 +51,7 @@ public class event_interface_fragment extends Fragment {
         super.onResume();
         getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.appbar_top).setVisibility(View.VISIBLE);
+        ((MainActivity)getActivity()).unlockDrawerMenu();
         //TODO Buttons which are visible
     }
 
@@ -69,6 +71,7 @@ public class event_interface_fragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         interestSpinner.setAdapter(adapter);
 
+
         searchButton = (Button) view.findViewById(R.id.eventSearchButton);
         searchButton.setOnClickListener(l -> {
             searchButton.setEnabled(false);
@@ -80,15 +83,6 @@ public class event_interface_fragment extends Fragment {
         eventRV.setLayoutManager(new LinearLayoutManager(getContext()));
         eventRV.addItemDecoration(new DividerItemDecoration(eventRV.getContext(), DividerItemDecoration.VERTICAL));
 
-        eventListAdapter = new EventListAdapter(getContext(), new EventItemAction() {
-            @Override
-            public NavDirections navigate(String id) {
-                event_interface_fragmentDirections.ActionEventInterfaceFragmentToInsideViewEventFragment action = event_interface_fragmentDirections.actionEventInterfaceFragmentToInsideViewEventFragment();
-                action.setItemId(id);
-                return action;
-            }
-        });
-
         MutableLiveData<ArrayList<Event>> eventsToShow = eventViewModel.getEventMutableLiveData();
         eventsToShow.observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
             @Override
@@ -96,7 +90,7 @@ public class event_interface_fragment extends Fragment {
                 ArrayList<Event> eventsWithInterest = new ArrayList<>();
                 if (events != null) {
                     for (Event event : events) {
-                        for (String interested : user.interestedIn){
+                        for (String interested : user.getInterestedIn()){
                             if (event.getInterest().equals(interested)) {
                                 eventsWithInterest.add(event);
                             }
@@ -107,6 +101,15 @@ public class event_interface_fragment extends Fragment {
                 eventListAdapter.setEvents(eventsWithInterest);
                 eventRV.setAdapter(eventListAdapter);
                 eventListAdapter.notifyDataSetChanged();
+            }
+        });
+
+        eventListAdapter = new EventListAdapter(getContext(), new EventItemAction() {
+            @Override
+            public NavDirections navigate(String id) {
+                event_interface_fragmentDirections.ActionEventInterfaceFragmentToInsideViewEventFragment action = event_interface_fragmentDirections.actionEventInterfaceFragmentToInsideViewEventFragment();
+                action.setItemId(id);
+                return action;
             }
         });
 
