@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Order {
+
     private String orderId;
     private ArrayList<Food> foodArrayList;
     private ArrayList<Drinks> drinksArrayList;

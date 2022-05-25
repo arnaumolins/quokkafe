@@ -3,6 +3,7 @@ package github.com.arnaumolins.quokkafe.Model;
 import java.util.List;
 
 public class User {
+
     public String userId;
     public String userName;
     public String userEmail;
@@ -86,5 +87,4 @@ public class User {
     public void setInterestedIn(List<String> interestedIn) {
         this.interestedIn = interestedIn;
     }
-
 }

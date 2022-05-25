@@ -6,27 +6,36 @@
     tools:context=".UI.event_interface_fragment"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="@string/eventsMenu"
+        android:textSize="50sp"
+        android:textStyle="bold"/>
     <Spinner
         android:id="@+id/interestSpinner"
         android:layout_width="300dp"
         android:layout_height="53dp"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"/>
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/eventSearchButton"
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:text="SEARCH"
-        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:text="@string/searchButton"
+        android:textSize="20sp"
         android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

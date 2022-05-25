@@ -16,6 +16,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class ImageRepository {
+
     static private ImageRepository instance;
     static final long THREE_MEGABYTES = 3 * 1024 * 1024;
     static final String TAG = "ImageRepository";

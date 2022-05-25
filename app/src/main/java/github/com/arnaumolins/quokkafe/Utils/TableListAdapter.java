@@ -47,9 +47,10 @@ public class TableListAdapter extends RecyclerView.Adapter<TableListAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         Table table = tables.get(position);
         viewHolder.itemView.setTag(table);
-        viewHolder.number.setText(table.getTableNumber());
-        viewHolder.available.setText(table.isAvailable().toString());
-        viewHolder.customers.setText(table.getNumberOfCustomers());
+        String tableNumberS = "Table number: " + table.getTableNumber();
+        viewHolder.number.setText(tableNumberS);
+        String costumersS = "Number of costumers: " + String.valueOf(table.getNumberOfCustomers());
+        viewHolder.customers.setText(costumersS);
 
         FirebaseStorage.getInstance().getReference("images/" + table.getImagePath()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -60,18 +61,18 @@ public class TableListAdapter extends RecyclerView.Adapter<TableListAdapter.View
                             .centerCrop()
                             .into(viewHolder.image);
                 } else {
-                    //TODO add error image
+
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //TODO add error image
+
             }
         }).addOnCanceledListener(new OnCanceledListener() {
             @Override
             public void onCanceled() {
-                //TODO add error image
+
             }
         });
 
@@ -85,14 +86,13 @@ public class TableListAdapter extends RecyclerView.Adapter<TableListAdapter.View
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView number, available, customers;
+        TextView number, customers;
         ImageView image;
 
         ViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.ivTableImage);
             number = itemView.findViewById(R.id.tvTableNumber);
-            available = itemView.findViewById(R.id.tvTableAvailable);
             customers = itemView.findViewById(R.id.tvTableCustomers);
         }
     }

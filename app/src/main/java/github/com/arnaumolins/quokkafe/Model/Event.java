@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
-    private String eventName;
+
     private String eventId;
-    private String interest;
+    private String eventName;
     private String eventDescription;
-    private List<String> assistants = new ArrayList<>();
     private String date;
+    private List<String> assistants = new ArrayList<>();
+    private String interest;
 
     public Event() {}
 
@@ -21,10 +22,6 @@ public class Event {
         this.interest = interest;
     }
 
-    public String getEventName(){return eventName;}
-
-    public void setEventName(String eventName){this.eventName = eventName;}
-
     public String getEventId() {
         return eventId;
     }
@@ -33,12 +30,12 @@ public class Event {
         this.eventId = eventId;
     }
 
-    public String getInterest() {
-        return interest;
+    public String getEventName(){
+        return eventName;
     }
 
-    public void setInterest(String interest) {
-        this.interest = interest;
+    public void setEventName(String eventName){
+        this.eventName = eventName;
     }
 
     public String getEventDescription() {
@@ -47,6 +44,14 @@ public class Event {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public List<String> getAssistants() {
@@ -63,23 +68,23 @@ public class Event {
         assistants.remove(assistant);
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getImagePath() {
-        return getEventId() + "/" + getEventId() + ".jpg";
-    }
-
-    public String getAssistansString(){
+    public String getAssistantsString(){
         StringBuilder totalAssistants = new StringBuilder();
         for (String user : getAssistants()) {
             totalAssistants.append(user).append("\n");
         }
         return totalAssistants.toString();
+    }
+
+    public String getInterest() {
+        return interest;
+    }
+
+    public void setInterest(String interest) {
+        this.interest = interest;
+    }
+
+    public String getImagePath() {
+        return getEventId() + "/" + getEventId() + ".jpg";
     }
 }
