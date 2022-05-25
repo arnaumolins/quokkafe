@@ -114,7 +114,6 @@ public class event_interface_fragment extends Fragment {
     }
 
     public void showEventWithInterest(){
-
         eventListInterestAdapter = new EventListAdapter(getContext(), new EventItemAction() {
             @Override
             public NavDirections navigate(String id) {

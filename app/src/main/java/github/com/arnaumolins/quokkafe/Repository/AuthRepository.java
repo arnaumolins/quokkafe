@@ -157,21 +157,21 @@ public class AuthRepository {
         return delAttendees;
     }
 
-    public MutableLiveData<List<String>> getCurrentUserAttendingEvents(){
+    public MutableLiveData<List<String>> getCurrentUserAttendingEvents() {
         User user = currentUser.getValue();
         MutableLiveData<List<String>> attendingEventsLiveData = new MutableLiveData<>();
-        if(currentUser != null){
+        if(currentUser != null) {
             FirebaseDatabase.getInstance().getReference("Users").child(user.userId).child("attendingEventsIds").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if(task.isSuccessful()){
+                    if(task.isSuccessful()) {
                         DataSnapshot dataSnapshot = task.getResult();
                         ArrayList<String> eventIds = new ArrayList<>();
-                        for(DataSnapshot ds: dataSnapshot.getChildren()){
+                        for(DataSnapshot ds: dataSnapshot.getChildren()) {
                             eventIds.add(ds.getValue(String.class));
                         }
                         attendingEventsLiveData.setValue(eventIds);
-                    }else{
+                    } else {
                         attendingEventsLiveData.setValue(null);
                     }
                 }
@@ -183,5 +183,33 @@ public class AuthRepository {
             });
         }
         return attendingEventsLiveData;
+    }
+
+    public MutableLiveData<List<String>> getCurrentUserBookings() {
+        User user = currentUser.getValue();
+        MutableLiveData<List<String>> bookingsLiveData = new MutableLiveData<>();
+        if (currentUser != null) {
+            FirebaseDatabase.getInstance().getReference("Users").child(user.userId).child("bookingsIds").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DataSnapshot dataSnapshot = task.getResult();
+                        ArrayList<String> bookingsIds = new ArrayList<>();
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            bookingsIds.add(ds.getValue(String.class));
+                        }
+                        bookingsLiveData.setValue(bookingsIds);
+                    } else {
+                        bookingsLiveData.setValue(null);
+                    }
+                }
+            }). addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    bookingsLiveData.setValue(null);
+                }
+            });
+        }
+        return bookingsLiveData;
     }
 }

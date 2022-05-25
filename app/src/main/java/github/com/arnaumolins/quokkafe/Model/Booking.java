@@ -1,20 +1,28 @@
 package github.com.arnaumolins.quokkafe.Model;
 
+import android.widget.DatePicker;
+import android.widget.TimePicker;
+
 public class Booking {
     private String bookingId;
     private String tableId;
     private String userId;
-    private String initDate;
-    private String endDate;
+
+    private DatePicker startingDate;
+    private DatePicker endingDate;
+    private TimePicker startingHour;
+    private TimePicker endingHour;
 
     public Booking() {}
 
-    public Booking(String bookingId, String tableId, String userId, String initDate, String endDate) {
+    public Booking(String bookingId, String tableId, String userId, DatePicker startingDate, DatePicker endingDate, TimePicker startingHour, TimePicker endingHour) {
         this.bookingId = bookingId;
         this.tableId = tableId;
         this.userId = userId;
-        this.initDate = initDate;
-        this.endDate = endDate;
+        this.startingDate = startingDate;
+        this.endingDate = endingDate;
+        this.startingHour = startingHour;
+        this.endingHour = endingHour;
     }
 
     public String getBookingId() {
@@ -41,19 +49,35 @@ public class Booking {
         this.userId = userId;
     }
 
-    public String getInitDate() {
-        return initDate;
+    public DatePicker getStartingDate() {
+        return startingDate;
     }
 
-    public void setInitDate(String initDate) {
-        this.initDate = initDate;
+    public void setStartingDate(DatePicker startingDate) {
+        this.startingDate = startingDate;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public DatePicker getEndingDate() {
+        return endingDate;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setEndingDate(DatePicker endingDate) {
+        this.endingDate = endingDate;
+    }
+
+    public TimePicker getStartingHour() {
+        return startingHour;
+    }
+
+    public void setStartingHour(TimePicker startingHour) {
+        this.startingHour = startingHour;
+    }
+
+    public TimePicker getEndingHour() {
+        return endingHour;
+    }
+
+    public void setEndingHour(TimePicker endingHour) {
+        this.endingHour = endingHour;
     }
 }

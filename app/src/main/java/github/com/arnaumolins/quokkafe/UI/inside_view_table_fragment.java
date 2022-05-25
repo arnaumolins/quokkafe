@@ -1,7 +1,9 @@
 package github.com.arnaumolins.quokkafe.UI;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +11,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,25 +29,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
+import java.util.ArrayList;
 
+import github.com.arnaumolins.quokkafe.Model.Booking;
 import github.com.arnaumolins.quokkafe.Model.Table;
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
 import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
 import github.com.arnaumolins.quokkafe.Repository.ImageRepository;
-import github.com.arnaumolins.quokkafe.ViewModel.ViewTableViewModel;
+import github.com.arnaumolins.quokkafe.ViewModel.BookingViewModel;
+import github.com.arnaumolins.quokkafe.ViewModel.TableViewModel;
 
 public class inside_view_table_fragment extends Fragment {
     MutableLiveData<Table> tableLiveData;
     LiveData<String> tableIdLiveData;
     private TextView tableNumber, tableAvailability, tableCostumers;
-    private DatePicker startingHour, endingHour;
+    private DatePicker startingDate, endingDate;
+    private TimePicker startingHour, endingHour;
     private Button bookingButton;
 
-    ViewTableViewModel viewTableViewModel;
+    TableViewModel tableViewModel;
+    BookingViewModel bookingViewModel;
     MutableLiveData<User> userMutableLiveData;
-    MutableLiveData<Boolean> usersBooksTable;
+    MutableLiveData<ArrayList<Booking>> tableBookingsLiveData;
 
     public inside_view_table_fragment() {
         // Required empty public constructor
@@ -68,34 +77,23 @@ public class inside_view_table_fragment extends Fragment {
         tableIdLiveData = new MutableLiveData<>(args.getItemId());
         View view = inflater.inflate(R.layout.fragment_inside_view_table_fragment, container, false);
 
-        viewTableViewModel = new ViewModelProvider(this).get(ViewTableViewModel.class);
+        tableViewModel = new ViewModelProvider(this).get(TableViewModel.class);
+
 
         userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
 
-        usersBooksTable = new MutableLiveData<>();
-        tableLiveData = new MutableLiveData<>();
-
-        usersBooksTable.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean books) {
-                if (books) {
-
-                } else {
-
-                }
-            }
-        });
+        tableBookingsLiveData = tableViewModel.getBookingsMutableLiveData(tableIdLiveData.getValue());
 
         tableNumber = (TextView) view.findViewById(R.id.tableNumberPlaceholder);
         tableAvailability = (TextView) view.findViewById(R.id.tableAvailabilityPlaceholder);
         tableCostumers = (TextView) view.findViewById(R.id.tableCostumersPlaceholder);
-        startingHour = (DatePicker) view.findViewById(R.id.startingHour);
-        endingHour = (DatePicker) view.findViewById(R.id.endingHour);
+        startingDate = (DatePicker) view.findViewById(R.id.startingDate);
+        endingDate = (DatePicker) view.findViewById(R.id.endingDate);
+        startingHour = (TimePicker) view.findViewById(R.id.startingHour);
+        endingHour = (TimePicker) view.findViewById(R.id.endingHour);
         bookingButton = (Button) view.findViewById(R.id.tableBookingButton);
-        bookingButton.setOnClickListener(l -> {
 
-        });
-
+        // TODO Display data
         Query query = FirebaseDatabase.getInstance().getReference().child("Tables").child(tableIdLiveData.getValue());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -103,11 +101,9 @@ public class inside_view_table_fragment extends Fragment {
                 Table table = snapshot.getValue(Table.class);
 
                 tableNumber.setText("Table number: " + table.getTableNumber());
-                if (table.isAvailable()) {
-                    tableAvailability.setText("Available");
-                } else {
-                    tableAvailability.setText("Not available");
-                }
+
+
+                tableAvailability.setText(TextUtils.join("\n ", tableBookingsLiveData.getValue()));
                 tableCostumers.setText(table.getNumberOfCustomers());
                 ImageRepository.getInstance().getImageUri(table.getImagePath()).observe(getViewLifecycleOwner(), new Observer<Uri>() {
                     @Override
@@ -122,8 +118,6 @@ public class inside_view_table_fragment extends Fragment {
                 });
 
                 tableLiveData.setValue(table);
-
-                MutableLiveData<List<String>> tableIds = AuthRepository.getAuthRepository().getCurrentUserAttendingEvents();
             }
 
             @Override
@@ -132,6 +126,47 @@ public class inside_view_table_fragment extends Fragment {
             }
         });
 
+        bookingButton.setOnClickListener(new View.OnClickListener() {
+            Booking newBooking = new Booking("null", tableIdLiveData.getValue(), userMutableLiveData.getValue().userId, startingDate, endingDate, startingHour, endingHour);
+
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                ArrayList<Booking> bookings = tableBookingsLiveData.getValue();
+                for (Booking booking : bookings) {
+                    if (startingDate.equals(booking.getStartingDate())) {
+                        if (startingHour.equals(booking.getStartingHour()) || (startingHour.getHour() > booking.getStartingHour().getHour() && startingHour.getHour() < booking.getEndingHour().getHour())) {
+                            Toast.makeText(getActivity(), "There already exists a booking during this period", Toast.LENGTH_LONG).show();
+                        } else {
+                            if ((endingHour.getMinute() - startingHour.getMinute()) < 30) {
+                                Toast.makeText(getActivity(), "The booking time has to be at least 30  minutes", Toast.LENGTH_LONG).show();
+                            } else {
+                                bookingViewModel.createBooking(new MutableLiveData<>(newBooking), userMutableLiveData);
+                                tableViewModel.addBookingMutableLiveData(new MutableLiveData<>(newBooking), userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                                    @Override
+                                    public void onChanged(Boolean bookingFinished) {
+                                        Toast.makeText(getActivity(), "Booking has been registered", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        }
+                    } else {
+                        if ((endingHour.getMinute() - startingHour.getMinute()) < 30) {
+                            Toast.makeText(getActivity(), "The booking time has to be at least 30  minutes", Toast.LENGTH_LONG).show();
+                        } else {
+                            bookingViewModel.createBooking(new MutableLiveData<>(newBooking), userMutableLiveData);
+                            tableViewModel.addBookingMutableLiveData(new MutableLiveData<>(newBooking), userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                                @Override
+                                public void onChanged(Boolean bookingFinished) {
+                                    Toast.makeText(getActivity(), "Booking has been registered", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    }
+                }
+
+            }
+        });
         return view;
     }
 }

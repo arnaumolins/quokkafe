@@ -4,14 +4,12 @@ public class Table {
     private String tableId;
     private String tableNumber;
     private int numberOfCustomers;
-    private Boolean isAvailable;
 
     public Table() {}
 
     public Table(String tableNumber, int numberOfCustomers) {
         this.tableNumber = tableNumber;
         this.numberOfCustomers = numberOfCustomers;
-        this.isAvailable = true;
     }
 
     public String getTableId() {
@@ -38,16 +36,7 @@ public class Table {
         this.numberOfCustomers = numberOfCustomers;
     }
 
-    public Boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(Boolean available) {
-        isAvailable = available;
-    }
-
     public String getImagePath() {
         return getTableId() + "/" + getTableId() + ".jpg";
     }
-
 }

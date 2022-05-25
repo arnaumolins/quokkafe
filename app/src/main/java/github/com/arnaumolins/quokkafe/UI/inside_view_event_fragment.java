@@ -119,7 +119,7 @@ public class inside_view_event_fragment extends Fragment {
                                                 if (currentUser != null) {
                                                     e.removeAssistant(currentUser.userName);
                                                 }
-                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistansString());
+                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistantsString());
 
                                                 userAttendsEvent.setValue(false);
                                             }
@@ -169,7 +169,7 @@ public class inside_view_event_fragment extends Fragment {
                                                 if (currentUser != null) {
                                                     e.addAssistant(currentUser.userName);
                                                 }
-                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistansString());
+                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistantsString());
 
                                                 userAttendsEvent.setValue(true);
                                             }
@@ -203,7 +203,7 @@ public class inside_view_event_fragment extends Fragment {
                 eventInterest.setText(event.getInterest());
                 eventDate.setText(event.getDate());
                 eventDescription.setText(event.getEventDescription());
-                eventUsers.setText(event.getAssistansString());
+                eventUsers.setText(event.getAssistantsString());
                 ImageRepository.getInstance().getImageUri(event.getImagePath()).observe(getViewLifecycleOwner(), new Observer<Uri>() {
                     @Override
                     public void onChanged(Uri uri) {

@@ -12,34 +12,27 @@
 
         <TextView
             android:id="@+id/tableNumberPlaceholder"
-            android:layout_width="0dp"
+            android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="39dp"
-            android:layout_marginEnd="16dp"
             android:inputType="textMultiLine"
             android:padding="10dp"
             android:text="Table number: "
             android:textSize="36sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="30dp">
 
         </TextView>
+
 
         <ImageView
             android:id="@+id/tableImagePlaceholder"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/tableAvailabilityPlaceholder"
-            app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableNumberPlaceholder">
-
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="118dp">
 
         </ImageView>
 
@@ -49,11 +42,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="19dp"
             android:text="Availability"
-            app:layout_constraintBottom_toTopOf="@+id/tableCostumersPlaceholder"
-            app:layout_constraintStart_toStartOf="parent">
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="261dp">
 
         </TextView>
 
@@ -63,35 +54,51 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="30dp"
-            android:layout_marginBottom="16dp"
             android:text="Number of customers"
-            app:layout_constraintBottom_toTopOf="@+id/startingHour"
-            app:layout_constraintEnd_toEndOf="@+id/tableAvailabilityPlaceholder"
-            app:layout_constraintStart_toEndOf="@+id/tableAvailabilityPlaceholder">
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="306dp">
 
         </TextView>
 
         <DatePicker
+            android:id="@+id/startingDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:datePickerMode="spinner"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="365dp">
+
+        </DatePicker>
+
+        <TimePicker
             android:id="@+id/startingHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
+            android:timePickerMode="spinner"
+            tools:layout_editor_absoluteX="77dp"
+            tools:layout_editor_absoluteY="675dp">
+
+        </TimePicker>
+
+        <DatePicker
+            android:id="@+id/endingDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:datePickerMode="spinner"
-            app:layout_constraintBottom_toTopOf="@+id/endingHour"
-            app:layout_constraintStart_toStartOf="parent">
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="922dp">
 
         </DatePicker>
 
-        <DatePicker
+        <TimePicker
             android:id="@+id/endingHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:datePickerMode="spinner"
-            app:layout_constraintBottom_toTopOf="@+id/tableBookingButton"
-            app:layout_constraintStart_toStartOf="parent">
+            android:timePickerMode="spinner"
+            tools:layout_editor_absoluteX="77dp"
+            tools:layout_editor_absoluteY="1225dp">
 
-        </DatePicker>
+        </TimePicker>
 
         <Button
             android:id="@+id/tableBookingButton"
@@ -100,9 +107,8 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="30dp"
             android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="1533dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
