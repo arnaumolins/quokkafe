@@ -90,5 +90,9 @@
         android:id="@+id/order_interface_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.order_interface_fragment"
         android:label="fragment_order_interface_fragment"
-        tools:layout="@layout/fragment_order_interface_fragment" />
+        tools:layout="@layout/fragment_order_interface_fragment" >
+        <action
+            android:id="@+id/action_order_interface_fragment_to_event_interface_fragment"
+            app:destination="@id/event_interface_fragment" />
+    </fragment>
 </navigation>

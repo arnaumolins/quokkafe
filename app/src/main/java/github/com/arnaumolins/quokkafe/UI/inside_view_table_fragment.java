@@ -136,7 +136,7 @@ public class inside_view_table_fragment extends Fragment {
         });
 
         bookingButton.setOnClickListener(new View.OnClickListener() {
-            Booking newBooking = new Booking("null", tableIdLiveData.getValue(), userMutableLiveData.getValue().userId, startingDate, endingDate, startingHour, endingHour);
+            Booking newBooking = new Booking("null", tableIdLiveData.getValue(), userMutableLiveData.getValue().userId, tableLiveData.getValue().getTableNumber(), startingDate, endingDate, startingHour, endingHour);
 
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

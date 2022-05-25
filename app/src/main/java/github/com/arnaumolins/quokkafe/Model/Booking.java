@@ -8,6 +8,7 @@ public class Booking {
     private String bookingId;
     private String tableId;
     private String userId;
+    private String tableName;
 
     private DatePicker startingDate;
     private DatePicker endingDate;
@@ -16,9 +17,10 @@ public class Booking {
 
     public Booking() {}
 
-    public Booking(String bookingId, String tableId, String userId, DatePicker startingDate, DatePicker endingDate, TimePicker startingHour, TimePicker endingHour) {
+    public Booking(String bookingId, String tableId, String userId, String tableName, DatePicker startingDate, DatePicker endingDate, TimePicker startingHour, TimePicker endingHour) {
         this.bookingId = bookingId;
         this.tableId = tableId;
+        this.tableName = tableName;
         this.userId = userId;
         this.startingDate = startingDate;
         this.endingDate = endingDate;
@@ -80,5 +82,13 @@ public class Booking {
 
     public void setEndingHour(TimePicker endingHour) {
         this.endingHour = endingHour;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 }

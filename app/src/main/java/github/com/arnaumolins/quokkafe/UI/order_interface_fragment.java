@@ -1,9 +1,14 @@
 package github.com.arnaumolins.quokkafe.UI;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,19 +22,19 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import github.com.arnaumolins.quokkafe.Model.Booking;
 import github.com.arnaumolins.quokkafe.Model.Drinks;
 import github.com.arnaumolins.quokkafe.Model.Food;
 import github.com.arnaumolins.quokkafe.Model.Order;
-import github.com.arnaumolins.quokkafe.Model.Table;
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
 import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
-import github.com.arnaumolins.quokkafe.Repository.TableRepository;
+import github.com.arnaumolins.quokkafe.ViewModel.OrderViewModel;
 
 public class order_interface_fragment extends Fragment {
 
@@ -40,7 +45,7 @@ public class order_interface_fragment extends Fragment {
     private ProgressBar progressBar;
     private float totalPriceMenu;
     private Spinner tableBooked;
-
+    private OrderViewModel orderViewModel;
 
     public order_interface_fragment() {
         // Required empty public constructor
@@ -66,6 +71,9 @@ public class order_interface_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_interface_fragment, container, false);
 
+
+        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
+
         drinksMenu.add(new Drinks("Espresso", 0));
         drinksMenu.add(new Drinks("Latte", 0));
         drinksMenu.add(new Drinks("Cappuccino", 0));
@@ -83,6 +91,7 @@ public class order_interface_fragment extends Fragment {
         foodMenu.add(new Food("Croissant", 25));
         foodMenu.add(new Food("Cinnamon Roll", 35));
         foodMenu.add(new Food("Pain au chocolat", 30));
+
 
         foodList = (ListView) view.findViewById(R.id.foodListView);
         drinksList = (ListView) view.findViewById(R.id.drinksListView);
@@ -128,7 +137,7 @@ public class order_interface_fragment extends Fragment {
     private void generateOrder(ListView foodListView, ListView drinksListView) {
         ArrayList<Food> aFood = new ArrayList<>();
         ArrayList<Drinks> aDrink = new ArrayList<>();
-        String tableBookedString = tableBooked.toString().trim();
+        String tableBookedString = tableBooked.getSelectedItem().toString().trim();
 
         for (int i = 0; i < foodListView.getCount(); i++) {
             if (foodListView.isItemChecked(i)) {
@@ -146,15 +155,68 @@ public class order_interface_fragment extends Fragment {
             totalPriceMenu += aFood.get(i).getFoodPrice();
         }
 
-        Boolean continueWithOrder = false;
+        Calendar calendar = Calendar.getInstance();
+        int actualHour = calendar.get(Calendar.HOUR_OF_DAY);
+
         MutableLiveData<User> userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
         progressBar.setVisibility(View.VISIBLE);
         FirebaseDatabase.getInstance().getReference("User").child(userMutableLiveData.getValue().userId).child("ownedBookingIds").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
+                ArrayList<Booking> bookingsIds = new ArrayList<>();
+                for (DataSnapshot sp : dataSnapshot.getChildren()){
+                    bookingsIds.add(sp.getValue(Booking.class));
+                }
 
+                if (!bookingsIds.isEmpty()){
+                    for (Booking b : bookingsIds){
+                        if (b.getTableName() == tableBookedString){
+                            if (b.getStartingHour().getHour() < actualHour && actualHour < b.getEndingHour().getHour()){
+                                // Creating order
+                                float priceBooking = 0;
+                                float differenceHours = b.getEndingHour().getHour() - b.getStartingHour().getHour();
+                                if (differenceHours <= 4 ){priceBooking = getPriceBooking(differenceHours);}
+                                Order order = new Order(null, aFood, aDrink, priceBooking + totalPriceMenu);
+                                MutableLiveData<Order> orderMutableLiveData = new MutableLiveData<>();
+                                orderMutableLiveData.setValue(order);
+
+                                orderViewModel.setOrder(orderMutableLiveData, userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                                    @Override
+                                    public void onChanged(Boolean aBoolean) {
+                                        if(aBoolean != null && aBoolean){
+                                            Toast.makeText(getActivity(), "Order has been registered successfully!", Toast.LENGTH_LONG).show();
+                                            progressBar.setVisibility(View.GONE);
+                                            Navigation.findNavController(getView()).navigate(R.id.action_order_interface_fragment_to_event_interface_fragment);
+                                        }else{
+                                            Toast.makeText(getActivity(), "Failed to register order!", Toast.LENGTH_LONG).show();
+                                            progressBar.setVisibility(View.GONE);
+                                        }
+                                    }
+                                });
+                            }
+                        }else{
+                            return;
+                        }
+                    }
+                }else{
+                    return;
+                }
             }
         });
 
+    }
+
+    private float getPriceBooking(float differenceHours){
+        if (0 < differenceHours && differenceHours <= 1){
+            return 59;
+        }else if (1 < differenceHours && differenceHours <= 2){
+            return 87;
+        }else if (2 < differenceHours && differenceHours <= 3){
+            return 115;
+        }else if (3 < differenceHours && differenceHours <= 4){
+            return 143;
+        }
+        return 0;
     }
 }
