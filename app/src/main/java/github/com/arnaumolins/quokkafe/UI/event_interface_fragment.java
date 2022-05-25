@@ -28,9 +28,10 @@ import github.com.arnaumolins.quokkafe.ViewModel.AuthViewModel;
 import github.com.arnaumolins.quokkafe.ViewModel.EventViewModel;
 
 public class event_interface_fragment extends Fragment {
+
     private RecyclerView eventRV;
-    private Spinner interestSpinner;
     private EventListAdapter eventListAdapter, eventListInterestAdapter;
+    private Spinner interestSpinner;
     private Button searchButton;
 
     AuthViewModel authViewModel;
@@ -50,7 +51,6 @@ public class event_interface_fragment extends Fragment {
         super.onResume();
         getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.appbar_top).setVisibility(View.VISIBLE);
-        //TODO Buttons which are visible
     }
 
     @Override
@@ -124,24 +124,26 @@ public class event_interface_fragment extends Fragment {
         });
 
         String userSearch = interestSpinner.getSelectedItem().toString().trim();
-        MutableLiveData<ArrayList<Event>> eventsToShow = eventViewModel.getEventMutableLiveData();
-        eventsToShow.observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
-            @Override
-            public void onChanged(ArrayList<Event> events) {
-                ArrayList<Event> eventsWithInterest = new ArrayList<>();
-                if (events != null) {
-                    for (Event event : events) {
-                        if (event.getInterest().equals(userSearch)) {
-                            eventsWithInterest.add(event);
+        if (!userSearch.equals("Choose and interest…")) {
+            MutableLiveData<ArrayList<Event>> eventsToShow = eventViewModel.getEventMutableLiveData();
+            eventsToShow.observe(getViewLifecycleOwner(), new Observer<ArrayList<Event>>() {
+                @Override
+                public void onChanged(ArrayList<Event> events) {
+                    ArrayList<Event> eventsWithInterest = new ArrayList<>();
+                    if (events != null) {
+                        for (Event event : events) {
+                            if (event.getInterest().equals(userSearch)) {
+                                eventsWithInterest.add(event);
+                            }
                         }
                     }
-                }
 
-                eventListInterestAdapter.setEvents(eventsWithInterest);
-                eventRV.setAdapter(eventListInterestAdapter);
-                eventListInterestAdapter.notifyDataSetChanged();
-                searchButton.setEnabled(true);
-            }
-        });
+                    eventListInterestAdapter.setEvents(eventsWithInterest);
+                    eventRV.setAdapter(eventListInterestAdapter);
+                    eventListInterestAdapter.notifyDataSetChanged();
+                    searchButton.setEnabled(true);
+                }
+            });
+        }
     }
 }

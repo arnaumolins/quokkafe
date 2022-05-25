@@ -30,4 +30,5 @@ public class AuthViewModel extends ViewModel {
     public void signOut() {
         authRepository.firebaseSignOut();
     }
+
 }

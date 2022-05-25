@@ -2,12 +2,6 @@ package github.com.arnaumolins.quokkafe.UI;
 
 import android.app.Activity;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -19,6 +13,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
@@ -105,7 +104,7 @@ public class log_in_fragment extends Fragment {
                         Toast.makeText(getActivity(), "Login passed successfully!", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
                         ((TextView)getActivity().findViewById(R.id.header_username)).setText("Logged as : " + user.userName);
-                        Navigation.findNavController(getView()).navigate(R.id.action_log_in_fragment_to_event_interface_fragment);
+                        Navigation.findNavController(getView()).navigate(R.id.action_log_in_fragment_to_table_booking_fragment);
                     }else{
                         Toast.makeText(getActivity(), "Login failed! Check your credentials!", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);

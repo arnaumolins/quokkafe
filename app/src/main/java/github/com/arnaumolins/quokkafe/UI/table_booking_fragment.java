@@ -23,6 +23,7 @@ import github.com.arnaumolins.quokkafe.Utils.TableListAdapter;
 import github.com.arnaumolins.quokkafe.ViewModel.TableViewModel;
 
 public class table_booking_fragment extends Fragment {
+
     private RecyclerView tableRV;
     private TableListAdapter tableListAdapter;
 
@@ -42,7 +43,6 @@ public class table_booking_fragment extends Fragment {
         super.onResume();
         getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.appbar_top).setVisibility(View.VISIBLE);
-        //TODO Buttons which are visible
     }
 
     @Override
@@ -71,7 +71,12 @@ public class table_booking_fragment extends Fragment {
         tablesToShow.observe(getViewLifecycleOwner(), new Observer<ArrayList<Table>>() {
             @Override
             public void onChanged(ArrayList<Table> tables) {
-                tableListAdapter.setTables(tables);
+                ArrayList<Table> tablesAvailable = new ArrayList<>();
+                if (tables != null) {
+                    tablesAvailable.addAll(tables);
+                }
+
+                tableListAdapter.setTables(tablesAvailable);
                 tableRV.setAdapter(tableListAdapter);
                 tableListAdapter.notifyDataSetChanged();
             }

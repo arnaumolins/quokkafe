@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -41,15 +42,19 @@ import github.com.arnaumolins.quokkafe.ViewModel.BookingViewModel;
 import github.com.arnaumolins.quokkafe.ViewModel.TableViewModel;
 
 public class inside_view_table_fragment extends Fragment {
+
     MutableLiveData<Table> tableLiveData;
     LiveData<String> tableIdLiveData;
+
     private TextView tableNumber, tableAvailability, tableCostumers;
+    private ListView bookingAvailability;
     private DatePicker startingDate, endingDate;
     private TimePicker startingHour, endingHour;
     private Button bookingButton;
 
     TableViewModel tableViewModel;
     BookingViewModel bookingViewModel;
+
     MutableLiveData<User> userMutableLiveData;
     MutableLiveData<ArrayList<Booking>> tableBookingsLiveData;
 
@@ -78,7 +83,7 @@ public class inside_view_table_fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inside_view_table_fragment, container, false);
 
         tableViewModel = new ViewModelProvider(this).get(TableViewModel.class);
-
+        bookingViewModel = new ViewModelProvider(this).get(BookingViewModel.class);
 
         userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
 
@@ -87,6 +92,8 @@ public class inside_view_table_fragment extends Fragment {
         tableNumber = (TextView) view.findViewById(R.id.tableNumberPlaceholder);
         tableAvailability = (TextView) view.findViewById(R.id.tableAvailabilityPlaceholder);
         tableCostumers = (TextView) view.findViewById(R.id.tableCostumersPlaceholder);
+        bookingAvailability = (ListView) view.findViewById(R.id.bookingAvailability);
+        // TODO add adapter
         startingDate = (DatePicker) view.findViewById(R.id.startingDate);
         endingDate = (DatePicker) view.findViewById(R.id.endingDate);
         startingHour = (TimePicker) view.findViewById(R.id.startingHour);
@@ -99,12 +106,14 @@ public class inside_view_table_fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Table table = snapshot.getValue(Table.class);
-
-                tableNumber.setText("Table number: " + table.getTableNumber());
+                String tableNumberS = "Table number: " + table.getTableNumber();
+                tableNumber.setText(tableNumberS);
 
 
                 tableAvailability.setText(TextUtils.join("\n ", tableBookingsLiveData.getValue()));
-                tableCostumers.setText(table.getNumberOfCustomers());
+
+                String tableCostumerS = "Number of costumers: " + table.getNumberOfCustomers();
+                tableCostumers.setText(tableCostumerS);
                 ImageRepository.getInstance().getImageUri(table.getImagePath()).observe(getViewLifecycleOwner(), new Observer<Uri>() {
                     @Override
                     public void onChanged(Uri uri) {

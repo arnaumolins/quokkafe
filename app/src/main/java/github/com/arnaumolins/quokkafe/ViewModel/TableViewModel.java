@@ -20,6 +20,6 @@ public class TableViewModel extends ViewModel {
     }
 
     public MutableLiveData<Boolean> addBookingMutableLiveData(MutableLiveData<Booking> booking, MutableLiveData<User> user) {
-        return TableRepository.getInstance().addBookingMutableLiveData(booking, user);
+        return TableRepository.getInstance().addTableBooking(booking, user);
     }
 }

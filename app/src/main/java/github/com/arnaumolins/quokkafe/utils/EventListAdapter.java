@@ -64,18 +64,18 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
                             .centerCrop()
                             .into(viewHolder.image);
                 } else {
-                    //TODO add error image
+
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //TODO add error image
+
             }
         }).addOnCanceledListener(new OnCanceledListener() {
             @Override
             public void onCanceled() {
-                //TODO add error image
+
             }
         });
 

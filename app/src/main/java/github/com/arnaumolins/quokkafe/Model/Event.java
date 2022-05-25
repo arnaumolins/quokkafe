@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
+
     private String eventId;
     private String eventName;
-    private String interest;
     private String eventDescription;
-    private List<String> assistants = new ArrayList<>();
     private String date;
+    private List<String> assistants = new ArrayList<>();
+    private String interest;
 
     public Event() {}
 
@@ -53,15 +54,6 @@ public class Event {
         this.date = date;
     }
 
-    public String getInterest() {
-        return interest;
-    }
-
-    public void setInterest(String interest) {
-        this.interest = interest;
-    }
-
-
     public List<String> getAssistants() {
         return assistants;
     }
@@ -76,15 +68,23 @@ public class Event {
         assistants.remove(assistant);
     }
 
-    public String getImagePath() {
-        return getEventId() + "/" + getEventId() + ".jpg";
-    }
-
     public String getAssistantsString(){
         StringBuilder totalAssistants = new StringBuilder();
         for (String user : getAssistants()) {
             totalAssistants.append(user).append("\n");
         }
         return totalAssistants.toString();
+    }
+
+    public String getInterest() {
+        return interest;
+    }
+
+    public void setInterest(String interest) {
+        this.interest = interest;
+    }
+
+    public String getImagePath() {
+        return getEventId() + "/" + getEventId() + ".jpg";
     }
 }

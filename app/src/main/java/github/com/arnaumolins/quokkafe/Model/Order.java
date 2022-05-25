@@ -3,6 +3,7 @@ package github.com.arnaumolins.quokkafe.Model;
 import java.util.List;
 
 public class Order {
+
     private String orderId;
     private String tableId;
     private List<Food> foodList;

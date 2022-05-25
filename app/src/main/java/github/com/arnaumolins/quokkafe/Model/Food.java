@@ -1,6 +1,7 @@
 package github.com.arnaumolins.quokkafe.Model;
 
 public class Food {
+
     private String foodId;
     private String foodName;
     private String foodDescription;

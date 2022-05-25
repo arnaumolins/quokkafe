@@ -40,11 +40,14 @@ import github.com.arnaumolins.quokkafe.Repository.ImageRepository;
 import github.com.arnaumolins.quokkafe.ViewModel.ViewEventViewModel;
 
 public class inside_view_event_fragment extends Fragment {
+
     MutableLiveData<Event> eventLiveData;
     LiveData<String> eventIdLiveData;
+
     private TextView eventName, eventInterest, eventDate, eventDescription, eventUsers;
 
     ViewEventViewModel viewEventViewModel;
+
     MutableLiveData<User> userMutableLiveData;
     MutableLiveData<Boolean> userAttendsEvent;
 

@@ -4,6 +4,7 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 public class Booking {
+
     private String bookingId;
     private String tableId;
     private String userId;

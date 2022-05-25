@@ -12,20 +12,20 @@
 
         <TextView
             android:id="@+id/tableNumberPlaceholder"
-            android:layout_width="379dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="30dp"
             android:inputType="textMultiLine"
             android:padding="10dp"
             android:text="Table number: "
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
+
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="30dp">
 
         </TextView>
-
 
         <ImageView
             android:id="@+id/tableImagePlaceholder"
@@ -48,6 +48,17 @@
 
         </TextView>
 
+        <ListView
+            android:id="@+id/bookingAvailability"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="30dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="294dp">
+
+        </ListView>
+
         <TextView
             android:id="@+id/tableCostumersPlaceholder"
             android:layout_width="wrap_content"
@@ -65,6 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:datePickerMode="spinner"
+            android:gravity="center"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="365dp">
 
@@ -75,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:timePickerMode="spinner"
+            android:gravity="center"
             tools:layout_editor_absoluteX="77dp"
             tools:layout_editor_absoluteY="675dp">
 
@@ -85,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:datePickerMode="spinner"
+            android:gravity="center"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="922dp">
 
@@ -95,6 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:timePickerMode="spinner"
+            android:gravity="center"
             tools:layout_editor_absoluteX="77dp"
             tools:layout_editor_absoluteY="1225dp">
 
@@ -108,7 +123,8 @@
             android:layout_marginVertical="30dp"
             android:gravity="center"
             tools:layout_editor_absoluteX="161dp"
-            tools:layout_editor_absoluteY="1533dp" />
+            tools:layout_editor_absoluteY="1533dp"
+            android:text="BOOK TABLE"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

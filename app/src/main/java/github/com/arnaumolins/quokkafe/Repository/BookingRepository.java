@@ -20,6 +20,7 @@ import github.com.arnaumolins.quokkafe.Model.Booking;
 import github.com.arnaumolins.quokkafe.Model.User;
 
 public class BookingRepository {
+
     private static final String TAG = "BookingRepository";
     private static BookingRepository instance;
     private static MutableLiveData<ArrayList<Booking>> bookingsLiveData;
@@ -33,6 +34,7 @@ public class BookingRepository {
     }
 
     public MutableLiveData<ArrayList<Booking>> getAllBookings() {
+        Log.i(TAG, "Getting all the bookings");
         if (bookingsLiveData.getValue() == null) {
             FirebaseDatabase.getInstance().getReference("Bookings").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -42,6 +44,8 @@ public class BookingRepository {
                         Booking booking = snap.getValue(Booking.class);
                         if (booking != null) {
                             booking.setBookingId(snap.getKey());
+                            Log.d(TAG, "Child with id " + snap.getKey());
+                            Log.d(TAG, booking.toString());
                             bookings.add(booking);
                         } else {
                             Log.e(TAG, "Booking with id " + snap.getKey() + " is not valid");
@@ -52,7 +56,9 @@ public class BookingRepository {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    Log.e(TAG, "Getting all bookings is cancelled");
+                    Log.e(TAG, error.getMessage());
+                    Log.e(TAG, error.getDetails());
                 }
             });
         }
@@ -68,6 +74,7 @@ public class BookingRepository {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    Log.d(TAG, "Booking created with id " + bookingId);
                     FirebaseDatabase.getInstance()
                             .getReference("Users")
                             .child(user.getValue().userId)
@@ -78,13 +85,16 @@ public class BookingRepository {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        Log.d("TAG", "User " + user.getValue().userId + " is owner of " + bookingId);
                                         setBookingState.setValue(true);
                                     } else {
+                                        Log.d("TAG", "User " + user.getValue().userId + " is not owner of " + bookingId);
                                         setBookingState.setValue(false);
                                     }
                                 }
                             });
                 } else {
+                    Log.e(TAG, "Can not create the booking!");
                     setBookingState.setValue(false);
                 }
             }

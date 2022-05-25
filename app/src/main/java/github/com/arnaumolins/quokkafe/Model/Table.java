@@ -1,6 +1,7 @@
 package github.com.arnaumolins.quokkafe.Model;
 
 public class Table {
+
     private String tableId;
     private String tableNumber;
     private int numberOfCustomers;
@@ -8,6 +9,7 @@ public class Table {
     public Table() {}
 
     public Table(String tableNumber, int numberOfCustomers) {
+        this.tableId = tableId;
         this.tableNumber = tableNumber;
         this.numberOfCustomers = numberOfCustomers;
     }

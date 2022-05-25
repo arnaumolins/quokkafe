@@ -3,7 +3,11 @@
     <string name="nav_drawe_open" translatable="false">OPEN!</string>
     <string name="nav_drawe_close">CLOSE!</string>
     <string name="hello_blank_fragment">HELLO NEW FRAGMENT</string>
+    <string name="tablesMenu">TABLES</string>
+    <string name="eventsMenu">EVENTS</string>
+    <string name="searchButton">SEARCH</string>
     <string-array name="InterestsList">
+        <item>Choose and interest…</item>
         <item>Music</item>
         <item>Movies</item>
         <item>Cooking</item>
