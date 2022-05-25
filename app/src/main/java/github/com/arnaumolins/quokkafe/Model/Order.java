@@ -1,19 +1,22 @@
 package github.com.arnaumolins.quokkafe.Model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Order {
     private String orderId;
-    private String tableId;
-    private List<Food> foodList;
+    private ArrayList<Food> foodArrayList;
+    private ArrayList<Drinks> drinksArrayList;
     private float totalPrice;
 
     public Order() {}
 
-    public Order(String orderId, String tableId, List<Food> foodList) {
+    public Order(String orderId, ArrayList<Food> foodArrayList, ArrayList<Drinks> drinksArrayList, float totalPrice) {
         this.orderId = orderId;
-        this.tableId = tableId;
-        this.foodList = foodList;
+        this.foodArrayList = foodArrayList;
+        this.drinksArrayList = drinksArrayList;
+        this.totalPrice = totalPrice;
     }
 
     public String getOrderId() {
@@ -24,26 +27,27 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getTableId() {
-        return tableId;
+    public ArrayList<Food> getFoodArrayList() {
+        return foodArrayList;
     }
 
-    public void setTableId(String tableId) {
-        this.tableId = tableId;
+    public void setFoodArrayList(ArrayList<Food> foodArrayList) {
+        this.foodArrayList = foodArrayList;
     }
 
-    public List<Food> getFoodList() {
-        return foodList;
+    public ArrayList<Drinks> getDrinksArrayList() {
+        return drinksArrayList;
     }
 
-    public void setFoodList(List<Food> foodList) {
-        this.foodList = foodList;
+    public void setDrinksArrayList(ArrayList<Drinks> drinksArrayList) {
+        this.drinksArrayList = drinksArrayList;
     }
 
     public float getTotalPrice() {
-        for (Food food: foodList) {
-            totalPrice += food.getFoodPrice();
-        }
         return totalPrice;
+    }
+
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

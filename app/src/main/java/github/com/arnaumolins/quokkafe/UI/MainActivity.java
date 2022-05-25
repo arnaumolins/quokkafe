@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements DrawerController{
         setSupportActionBar(mToolbar);
 
         //nav controller
-        navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navHostFragment);
+        navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_Host_Fragment);
         navController = navHostFragment.getNavController();
 
         drawerLayout = findViewById(R.id.drawer_layout);

@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navgraph"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/starting_page_fragment">
 
     <fragment
@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_log_in_fragment_to_event_interface_fragment"
             app:destination="@id/event_interface_fragment" />
+        <action
+            android:id="@+id/action_log_in_fragment_to_order_interface_fragment"
+            app:destination="@id/order_interface_fragment" />
     </fragment>
     <fragment
         android:id="@+id/event_interface_fragment"
@@ -83,4 +86,9 @@
         android:name="github.com.arnaumolins.quokkafe.UI.create_table_fragment"
         android:label="fragment_create_table_fragment"
         tools:layout="@layout/fragment_create_table_fragment" />
+    <fragment
+        android:id="@+id/order_interface_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.order_interface_fragment"
+        android:label="fragment_order_interface_fragment"
+        tools:layout="@layout/fragment_order_interface_fragment" />
 </navigation>
