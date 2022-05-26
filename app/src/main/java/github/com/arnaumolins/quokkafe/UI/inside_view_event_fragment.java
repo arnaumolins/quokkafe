@@ -78,8 +78,8 @@ public class inside_view_event_fragment extends Fragment {
         viewEventViewModel = new ViewModelProvider(this).get(ViewEventViewModel.class);
 
         userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
-
         userAttendsEvent = new MutableLiveData<>();
+
         eventLiveData = new MutableLiveData<>();
 
         userAttendsEvent.observe(getViewLifecycleOwner(), new Observer<Boolean>() {

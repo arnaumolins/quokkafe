@@ -1,29 +1,42 @@
 package github.com.arnaumolins.quokkafe.Model;
 
-import android.widget.DatePicker;
-import android.widget.TimePicker;
-
 public class Booking {
 
     private String bookingId;
     private String tableId;
     private String userId;
 
-    private DatePicker startingDate;
-    private DatePicker endingDate;
-    private TimePicker startingHour;
-    private TimePicker endingHour;
+    private String bookingYear;
+    private String bookingMonth;
+    private String bookingDay;
+
+    private String startingHour;
+    private String startingMinute;
+
+    private String endingHour;
+    private String endingMinute;
 
     public Booking() {}
 
-    public Booking(String bookingId, String tableId, String userId, DatePicker startingDate, DatePicker endingDate, TimePicker startingHour, TimePicker endingHour) {
+    public Booking(String bookingId, String tableId, String userId,
+                   String bookingYear,
+                   String bookingMonth,
+                   String bookingDay,
+                   String startingHour,
+                   String startingMinute,
+                   String endingHour,
+                   String endingMinute) {
         this.bookingId = bookingId;
         this.tableId = tableId;
         this.userId = userId;
-        this.startingDate = startingDate;
-        this.endingDate = endingDate;
+        this.bookingYear = bookingYear;
+        this.bookingMonth = bookingMonth;
+        this.bookingDay = bookingDay;
         this.startingHour = startingHour;
+        this.startingMinute = startingMinute;
         this.endingHour = endingHour;
+        this.endingMinute = endingMinute;
+
     }
 
     public String getBookingId() {
@@ -50,35 +63,59 @@ public class Booking {
         this.userId = userId;
     }
 
-    public DatePicker getStartingDate() {
-        return startingDate;
+    public String getBookingYear() {
+        return bookingYear;
     }
 
-    public void setStartingDate(DatePicker startingDate) {
-        this.startingDate = startingDate;
+    public void setBookingYear(String bookingYear) {
+        this.bookingYear = bookingYear;
     }
 
-    public DatePicker getEndingDate() {
-        return endingDate;
+    public String getBookingMonth() {
+        return bookingMonth;
     }
 
-    public void setEndingDate(DatePicker endingDate) {
-        this.endingDate = endingDate;
+    public void setBookingMonth(String bookingMonth) {
+        this.bookingMonth = bookingMonth;
     }
 
-    public TimePicker getStartingHour() {
+    public String getBookingDay() {
+        return bookingDay;
+    }
+
+    public void setBookingDay(String bookingDay) {
+        this.bookingDay = bookingDay;
+    }
+
+    public String getStartingHour() {
         return startingHour;
     }
 
-    public void setStartingHour(TimePicker startingHour) {
+    public void setStartingHour(String startingHour) {
         this.startingHour = startingHour;
     }
 
-    public TimePicker getEndingHour() {
+    public String getStartingMinute() {
+        return startingMinute;
+    }
+
+    public void setStartingMinute(String startingMinute) {
+        this.startingMinute = startingMinute;
+    }
+
+    public String getEndingHour() {
         return endingHour;
     }
 
-    public void setEndingHour(TimePicker endingHour) {
+    public void setEndingHour(String endingHour) {
         this.endingHour = endingHour;
+    }
+
+    public String getEndingMinute() {
+        return endingMinute;
+    }
+
+    public void setEndingMinute(String endingMinute) {
+        this.endingMinute = endingMinute;
     }
 }
