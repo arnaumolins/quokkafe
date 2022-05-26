@@ -30,6 +30,7 @@ public class TableRepository {
         if (instance == null) {
             instance = new TableRepository();
             tablesLiveData = new MutableLiveData<>(null);
+            bookingsLiveData = new MutableLiveData<>(null);
         }
         return instance;
     }
@@ -69,7 +70,9 @@ public class TableRepository {
     public MutableLiveData<ArrayList<Booking>> getTableBookings(String tableId) {
         Log.i(TAG, "Getting all bookings for table with id " + tableId);
         if (bookingsLiveData.getValue() == null) {
-            FirebaseDatabase.getInstance().getReference("Tables").child(tableId).addValueEventListener(new ValueEventListener() {
+            FirebaseDatabase.getInstance().getReference("Tables")
+                    .child(tableId)
+                    .child("TableBookings").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     ArrayList<Booking> tableBookings = new ArrayList<>();
@@ -101,8 +104,10 @@ public class TableRepository {
     public MutableLiveData<Boolean> addTableBooking(MutableLiveData<Booking> booking, MutableLiveData<User> user) {
         MutableLiveData<Boolean> setTableState = new MutableLiveData<>();
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Tables");
-        String tableBookingId = dbRef.push().getKey();
-        dbRef.child("TableBookings").child(tableBookingId).setValue(booking.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        dbRef.child(booking.getValue().getTableId())
+                .child("TableBookings")
+                .child(booking.getValue().getBookingId())
+                .setValue(booking.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
