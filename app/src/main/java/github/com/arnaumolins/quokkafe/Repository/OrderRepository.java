@@ -107,7 +107,7 @@ public class OrderRepository {
         return setOrderState;
     }
 
-    public MutableLiveData<ArrayList<Order>> getAllEvents() {
+    public MutableLiveData<ArrayList<Order>> getAllOrders() {
         Log.i(TAG, "Getting all the orders");
         if (ordersLiveData.getValue() == null) {
             FirebaseDatabase.getInstance().getReference("Orders").addValueEventListener(new ValueEventListener() {
