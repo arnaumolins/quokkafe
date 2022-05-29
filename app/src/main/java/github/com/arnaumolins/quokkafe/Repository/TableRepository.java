@@ -67,40 +67,6 @@ public class TableRepository {
         return tablesLiveData;
     }
 
-    public MutableLiveData<ArrayList<Booking>> getTableBookings(String tableId) {
-        Log.i(TAG, "Getting all bookings for table with id " + tableId);
-        if (bookingsLiveData.getValue() == null) {
-            FirebaseDatabase.getInstance().getReference("Tables")
-                    .child(tableId)
-                    .child("TableBookings").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    ArrayList<Booking> tableBookings = new ArrayList<>();
-                    for (DataSnapshot snap : snapshot.getChildren()) {
-                        Booking booking = snap.getValue(Booking.class);
-                        if (booking != null) {
-                            booking.setBookingId(snap.getKey());
-                            Log.d(TAG, "Child with id " + snap.getKey());
-                            Log.d(TAG, tableBookings.toString());
-                            tableBookings.add(booking);
-                        } else {
-                            Log.e(TAG, "Booking with id " + snap.getKey() + "from table with id " + tableId + " is not valid");
-                        }
-                    }
-                    bookingsLiveData.setValue(tableBookings);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.e(TAG, "Getting all bookings is cancelled");
-                    Log.e(TAG, error.getMessage());
-                    Log.e(TAG, error.getDetails());
-                }
-            });
-        }
-        return bookingsLiveData;
-    }
-
     public MutableLiveData<Boolean> addTableBooking(MutableLiveData<Booking> booking, MutableLiveData<User> user) {
         MutableLiveData<Boolean> setTableState = new MutableLiveData<>();
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Tables");

@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -47,7 +46,6 @@ public class inside_view_table_fragment extends Fragment {
     LiveData<String> tableIdLiveData;
 
     private TextView tableNumber, tableAvailability, tableCostumers;
-    private ListView bookingAvailability;
     private DatePicker bookingDate;
     private TimePicker startingHour, endingHour;
 
@@ -85,7 +83,16 @@ public class inside_view_table_fragment extends Fragment {
         bookingViewModel = new ViewModelProvider(this).get(BookingViewModel.class);
 
         userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
-        tableBookingsLiveData = tableViewModel.getBookingsMutableLiveData(tableIdLiveData.getValue());
+        tableBookingsLiveData = bookingViewModel.getBookingMutableLiveData();
+        ArrayList<Booking> bookings = tableBookingsLiveData.getValue();
+        ArrayList<Booking> tableBookingsOnly = new ArrayList<>();
+        if (bookings != null) {
+            for (Booking booking : bookings) {
+                if (booking.getTableId().equals(tableIdLiveData.getValue())) {
+                    tableBookingsOnly.add(booking);
+                }
+            }
+        }
 
         tableLiveData = new MutableLiveData<>();
 
@@ -98,7 +105,6 @@ public class inside_view_table_fragment extends Fragment {
         endingHour = (TimePicker) view.findViewById(R.id.endingHour);
         Button bookingButton = (Button) view.findViewById(R.id.tableBookingButton);
 
-        // TODO Display data
         Query query = FirebaseDatabase.getInstance().getReference().child("Tables").child(tableIdLiveData.getValue());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -108,11 +114,10 @@ public class inside_view_table_fragment extends Fragment {
                 tableNumber.setText(tableNumberS);
 
                 StringBuilder tableBookingsS = new StringBuilder("Booked hours \n");
-                for (Booking booking : tableBookingsLiveData.getValue()) {
+                for (Booking booking : tableBookingsOnly) {
                     tableBookingsS.append(booking.getBookingDay()).append("/").append(booking.getBookingMonth()).append("/").append(booking.getBookingYear()).append("\n");
                     tableBookingsS.append("From: ").append(booking.getStartingHour()).append(":").append(booking.getStartingMinute()).append(" to ").append(booking.getEndingHour()).append(":").append(booking.getEndingMinute()).append("\n\n");
                 }
-                Log.d("Table bookings", tableBookingsS.toString());
                 tableAvailability.setText(tableBookingsS.toString());
 
                 String tableCostumerS = "Number of costumers: " + table.getNumberOfCustomers();
@@ -215,7 +220,6 @@ public class inside_view_table_fragment extends Fragment {
     }
 
     public void bookTable(MutableLiveData<Booking> booking) {
-
         bookingViewModel.createBooking(booking, userMutableLiveData);
         tableViewModel.addBookingMutableLiveData(booking, userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
