@@ -218,19 +218,15 @@ public class order_interface_fragment extends Fragment {
                                                     }
                                                 }
                                             });
-                                        } else {
-                                            return;
                                         }
-                                    } else {
-                                        return;
                                     }
                                 }
-                            } else {
-                                return;
                             }
                         }
                     });
                 } else {
+                    Toast.makeText(getActivity(), "Failed to register order!", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
             }
