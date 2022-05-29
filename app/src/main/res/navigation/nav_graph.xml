@@ -34,12 +34,6 @@
         <action
             android:id="@+id/action_log_in_fragment_to_event_interface_fragment"
             app:destination="@id/event_interface_fragment" />
-        <action
-            android:id="@+id/action_log_in_fragment_to_order_interface_fragment"
-            app:destination="@id/order_interface_fragment" />
-        <action
-            android:id="@+id/action_log_in_fragment_to_table_booking_fragment"
-            app:destination="@id/table_booking_fragment" />
     </fragment>
     <fragment
         android:id="@+id/event_interface_fragment"
@@ -98,4 +92,9 @@
             android:id="@+id/action_order_interface_fragment_to_event_interface_fragment"
             app:destination="@id/event_interface_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/attending_events_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.attending_events_fragment"
+        android:label="fragment_attending_events_fragment"
+        tools:layout="@layout/fragment_attending_events_fragment" />
 </navigation>

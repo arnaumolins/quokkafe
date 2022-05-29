@@ -178,49 +178,60 @@ public class order_interface_fragment extends Fragment {
                 }
 
                 if (!bookingsIds.isEmpty()) {
-                    ArrayList<Booking> bookingArrayList = new ArrayList<>();
                     BookingsLiveData = bookingViewModel.getBookingMutableLiveData();
-                    ArrayList<Booking> allBookings = BookingsLiveData.getValue();
-                    Log.d("allBookings", "ARRIBE AQUI");
-                    if (allBookings != null){
-                        Log.d("allBookings", "ARRIBE AQUI TAMBE");
-                        for (Booking book : allBookings) {
-                            if (bookingsIds.contains(book.getBookingId())) {
-                                Log.d("allBookings", book.getBookingId());
-                                bookingArrayList.add(book);
-                            }
-                        }
-                    }
-                    Log.d("allBookings", bookingArrayList.toString());
-                    for (Booking b : bookingArrayList) {
-                        Log.d("allBookings", b.getTableName());
-                        if (b.getTableName().equals(tableBookedString)) {
-                            if (Integer.parseInt(b.getStartingHour()) < actualHour && actualHour < Integer.parseInt(b.getEndingHour())) {
-                                // Creating order
-                                float priceBooking = 0;
-                                float differenceHours = Integer.parseInt(b.getEndingHour()) - Integer.parseInt(b.getStartingHour());
-                                if (differenceHours <= 4) {
-                                    priceBooking = getPriceBooking(differenceHours);
-                                }
-                                Order order = new Order(null, aFood, aDrink, priceBooking + totalPriceMenu);
-                                orderMutableLiveData.setValue(order);
-
-                                orderViewModel.setOrder(orderMutableLiveData, userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-                                    @Override
-                                    public void onChanged(Boolean aBoolean) {
-                                        if (aBoolean != null && aBoolean) {
-                                            Toast.makeText(getActivity(), "Order has been registered successfully!", Toast.LENGTH_LONG).show();
-                                            progressBar.setVisibility(View.GONE);
-                                            Navigation.findNavController(getView()).navigate(R.id.action_order_interface_fragment_to_event_interface_fragment);
-                                        } else {
-                                            Toast.makeText(getActivity(), "Failed to register order!", Toast.LENGTH_LONG).show();
-                                            progressBar.setVisibility(View.GONE);
-                                        }
+                    BookingsLiveData.observe(getViewLifecycleOwner(), new Observer<ArrayList<Booking>>() {
+                        @Override
+                        public void onChanged(ArrayList<Booking> bookings) {
+                            ArrayList<Booking> bookingArrayList = new ArrayList<>();
+                            if (bookings != null){
+                                for (Booking book : bookings) {
+                                    if (bookingsIds.contains(book.getBookingId())) {
+                                        Log.d("allBookings", book.getTableName());
+                                        bookingArrayList.add(book);
                                     }
-                                });
+                                }
+
+                                Log.d("allBookings", bookingArrayList.toString());
+                                for (Booking b : bookingArrayList) {
+                                    Log.d("allBookings", b.getTableName());
+                                    if (b.getTableName().equals(tableBookedString)) {
+                                        Log.d("allBookings", String.valueOf(b.getEndingHour()));
+                                        if (Integer.parseInt(b.getStartingHour()) <= actualHour && actualHour <= Integer.parseInt(b.getEndingHour())) {
+                                            float priceBooking = 0;
+                                            float differenceHours = Integer.parseInt(b.getEndingHour()) - Integer.parseInt(b.getStartingHour());
+                                            if (differenceHours <= 4) {
+                                                priceBooking = getPriceBooking(differenceHours);
+                                            }
+                                            Order order = new Order(null, aFood, aDrink, priceBooking + totalPriceMenu);
+                                            orderMutableLiveData.setValue(order);
+
+                                            orderViewModel.setOrder(orderMutableLiveData, userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                                                @Override
+                                                public void onChanged(Boolean aBoolean) {
+                                                    if (aBoolean != null && aBoolean) {
+                                                        Toast.makeText(getActivity(), "Order has been registered successfully!", Toast.LENGTH_LONG).show();
+                                                        progressBar.setVisibility(View.GONE);
+                                                        Navigation.findNavController(getView()).navigate(R.id.action_order_interface_fragment_to_event_interface_fragment);
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Failed to register order!", Toast.LENGTH_LONG).show();
+                                                        progressBar.setVisibility(View.GONE);
+                                                    }
+                                                }
+                                            });
+                                        } else {
+                                            return;
+                                        }
+                                    } else {
+                                        return;
+                                    }
+                                }
+                            } else {
+                                return;
                             }
                         }
-                    }
+                    });
+                } else {
+                    return;
                 }
             }
         });

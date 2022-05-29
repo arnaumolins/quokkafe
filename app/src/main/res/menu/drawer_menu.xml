@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@id/attending_events"
+        android:id="@+id/attending_events_fragment"
         android:enabled="true"
         android:title="Attending events >"/>
+
+    <item
+        android:id="@id/attending_events"
+        android:enabled="true"
+        android:title="Booked tables >"/>
+
+    <item
+        android:id="@id/attending_events"
+        android:enabled="true"
+        android:title="Your orders >"/>
 </menu>

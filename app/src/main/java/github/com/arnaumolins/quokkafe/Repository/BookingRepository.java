@@ -45,7 +45,7 @@ public class BookingRepository {
                         if (booking != null) {
                             booking.setBookingId(snap.getKey());
                             Log.d(TAG, "Child with id " + snap.getKey());
-                            Log.d(TAG, booking.toString());
+                            Log.d(TAG, booking.getTableName());
                             bookings.add(booking);
                         } else {
                             Log.e(TAG, "Booking with id " + snap.getKey() + " is not valid");

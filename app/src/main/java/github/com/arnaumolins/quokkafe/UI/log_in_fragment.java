@@ -105,9 +105,8 @@ public class log_in_fragment extends Fragment {
                         Toast.makeText(getActivity(), "Login passed successfully!", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
                         ((TextView)getActivity().findViewById(R.id.header_username)).setText("Logged as : " + user.userName);
-                        Navigation.findNavController(getView()).navigate(R.id.action_log_in_fragment_to_order_interface_fragment);
-                        //Navigation.findNavController(getView()).navigate(R.id.action_log_in_fragment_to_table_booking_fragment);
-                    }else{
+                        Navigation.findNavController(getView()).navigate(R.id.action_log_in_fragment_to_event_interface_fragment);
+                        }else{
                         Toast.makeText(getActivity(), "Login failed! Check your credentials!", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
                     }
