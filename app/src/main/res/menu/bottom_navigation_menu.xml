@@ -2,18 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/event_interface_bottom"
         android:enabled="true"
         android:icon="@drawable/events_icon"
         android:title="Events"/>
 
     <item
-
+        android:id="@+id/table_booking_bottom"
         android:enabled="true"
         android:icon="@drawable/tables_icon"
         android:title="Tables"/>
 
     <item
-
+        android:id="@+id/order_interface_bottom"
         android:enabled="true"
         android:icon="@drawable/orders_icon"
         android:title="Orders"/>

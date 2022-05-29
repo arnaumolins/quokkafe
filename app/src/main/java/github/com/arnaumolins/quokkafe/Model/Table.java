@@ -8,7 +8,7 @@ public class Table {
 
     public Table() {}
 
-    public Table(String tableNumber, int numberOfCustomers) {
+    public Table(String tableId,String tableNumber, int numberOfCustomers) {
         this.tableId = tableId;
         this.tableNumber = tableNumber;
         this.numberOfCustomers = numberOfCustomers;

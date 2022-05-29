@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navgraph"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/starting_page_fragment">
 
     <fragment
@@ -35,11 +35,8 @@
             android:id="@+id/action_log_in_fragment_to_event_interface_fragment"
             app:destination="@id/event_interface_fragment" />
         <action
-            android:id="@+id/action_log_in_fragment_to_inside_view_event_fragment"
-            app:destination="@id/inside_view_event_fragment" />
-        <action
-            android:id="@+id/action_log_in_fragment_to_create_event_fragment"
-            app:destination="@id/create_event_fragment" />
+            android:id="@+id/action_log_in_fragment_to_order_interface_fragment"
+            app:destination="@id/order_interface_fragment" />
         <action
             android:id="@+id/action_log_in_fragment_to_table_booking_fragment"
             app:destination="@id/table_booking_fragment" />
@@ -67,11 +64,7 @@
     <fragment
         android:id="@+id/create_event_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.create_event_fragment"
-        android:label="create_event_fragment" >
-        <action
-            android:id="@+id/action_create_event_fragment_to_inside_view_event_fragment"
-            app:destination="@id/inside_view_event_fragment" />
-    </fragment>
+        android:label="create_event_fragment" />
     <fragment
         android:id="@+id/table_booking_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.table_booking_fragment"
@@ -90,5 +83,19 @@
             android:name="itemId"
             app:argType="string"
             android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/create_table_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.create_table_fragment"
+        android:label="fragment_create_table_fragment"
+        tools:layout="@layout/fragment_create_table_fragment" />
+    <fragment
+        android:id="@+id/order_interface_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.order_interface_fragment"
+        android:label="fragment_order_interface_fragment"
+        tools:layout="@layout/fragment_order_interface_fragment" >
+        <action
+            android:id="@+id/action_order_interface_fragment_to_event_interface_fragment"
+            app:destination="@id/event_interface_fragment" />
     </fragment>
 </navigation>
