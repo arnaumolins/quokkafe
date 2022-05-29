@@ -2,7 +2,6 @@ package github.com.arnaumolins.quokkafe.Utils;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,11 +48,15 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
         Event event = events.get(position);
         viewHolder.itemView.setTag(event);
         viewHolder.name.setText(event.getEventName());
-        viewHolder.date.setText(event.getDate());
-        viewHolder.interest.setText(event.getInterest());
-        viewHolder.description.setText(event.getEventDescription());
 
-        Log.d(TAG, "images/" + event.getImagePath());
+        String[] dateSArr = event.getDate().split("-");
+        StringBuilder dateS = new StringBuilder(dateSArr[2]).append("/").append(dateSArr[1]).append("/").append(dateSArr[0]);
+        viewHolder.date.setText(dateS);
+
+        viewHolder.interest.setText(event.getInterest());
+
+        StringBuilder descriptionS = new StringBuilder("Event description: ").append(event.getEventDescription());
+        viewHolder.description.setText(descriptionS);
 
         FirebaseStorage.getInstance().getReference("images/" + event.getImagePath()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

@@ -6,12 +6,12 @@
         android:title="Attending events >"/>
 
     <item
-        android:id="@id/attending_events"
+        android:id="@+id/booked_tables_fragment"
         android:enabled="true"
         android:title="Booked tables >"/>
 
     <item
-        android:id="@id/attending_events"
+        android:id="@+id/all_orders_fragment"
         android:enabled="true"
         android:title="Your orders >"/>
 </menu>

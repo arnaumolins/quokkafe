@@ -49,6 +49,14 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
     public String getTableId() {
         return tableId;
     }
@@ -121,11 +129,4 @@ public class Booking {
         this.endingMinute = endingMinute;
     }
 
-    public String getTableName() {
-        return tableName;
-    }
-
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
 }

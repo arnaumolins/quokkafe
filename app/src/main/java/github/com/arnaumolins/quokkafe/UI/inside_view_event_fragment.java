@@ -204,7 +204,7 @@ public class inside_view_event_fragment extends Fragment {
                 eventName.setText(event.getEventName());
 
                 String[] dateSArr = event.getDate().split("-");
-                StringBuilder dateS = new StringBuilder(dateSArr[0]).append("/").append(dateSArr[1]).append("/").append(dateSArr[2]);
+                StringBuilder dateS = new StringBuilder(dateSArr[2]).append("/").append(dateSArr[1]).append("/").append(dateSArr[0]);
                 eventDate.setText(dateS);
 
                 eventInterest.setText(event.getInterest());
@@ -212,7 +212,7 @@ public class inside_view_event_fragment extends Fragment {
                 StringBuilder descriptionS = new StringBuilder("Event description: ").append(event.getEventDescription());
                 eventDescription.setText(descriptionS);
 
-                StringBuilder assistantsS = new StringBuilder("Assistants to the event\n_______________\n").append(event.getAssistantsString());
+                StringBuilder assistantsS = new StringBuilder("Assistants to the event\n_______________\n\n").append(event.getAssistantsString());
                 eventUsers.setText(assistantsS);
 
                 ImageRepository.getInstance().getImageUri(event.getImagePath()).observe(getViewLifecycleOwner(), new Observer<Uri>() {

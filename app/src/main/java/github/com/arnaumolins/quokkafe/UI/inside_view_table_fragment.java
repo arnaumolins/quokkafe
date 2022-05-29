@@ -84,15 +84,19 @@ public class inside_view_table_fragment extends Fragment {
 
         userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
         tableBookingsLiveData = bookingViewModel.getBookingMutableLiveData();
-        ArrayList<Booking> bookings = tableBookingsLiveData.getValue();
         ArrayList<Booking> tableBookingsOnly = new ArrayList<>();
-        if (bookings != null) {
-            for (Booking booking : bookings) {
-                if (booking.getTableId().equals(tableIdLiveData.getValue())) {
-                    tableBookingsOnly.add(booking);
+        tableBookingsLiveData.observe(getViewLifecycleOwner(), new Observer<ArrayList<Booking>>() {
+            @Override
+            public void onChanged(ArrayList<Booking> bookings) {
+                if (bookings != null) {
+                    for (Booking booking : bookings) {
+                        if (booking.getTableId().equals(tableIdLiveData.getValue())) {
+                            tableBookingsOnly.add(booking);
+                        }
+                    }
                 }
             }
-        }
+        });
 
         tableLiveData = new MutableLiveData<>();
 
