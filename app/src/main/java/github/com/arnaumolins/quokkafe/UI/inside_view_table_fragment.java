@@ -113,10 +113,14 @@ public class inside_view_table_fragment extends Fragment {
                 String tableNumberS = "Table number: " + table.getTableNumber();
                 tableNumber.setText(tableNumberS);
 
-                StringBuilder tableBookingsS = new StringBuilder("Booked hours \n");
-                for (Booking booking : tableBookingsOnly) {
-                    tableBookingsS.append(booking.getBookingDay()).append("/").append(booking.getBookingMonth()).append("/").append(booking.getBookingYear()).append("\n");
-                    tableBookingsS.append("From: ").append(booking.getStartingHour()).append(":").append(booking.getStartingMinute()).append(" to ").append(booking.getEndingHour()).append(":").append(booking.getEndingMinute()).append("\n\n");
+                StringBuilder tableBookingsS = new StringBuilder("Booked hours \n_______________\n\n");
+                if (!tableBookingsOnly.isEmpty()) {
+                    for (Booking booking : tableBookingsOnly) {
+                        tableBookingsS.append(booking.getBookingDay()).append("/").append(booking.getBookingMonth()).append("/").append(booking.getBookingYear()).append("\n");
+                        tableBookingsS.append("From: ").append(booking.getStartingHour()).append(":").append(booking.getStartingMinute()).append(" to ").append(booking.getEndingHour()).append(":").append(booking.getEndingMinute()).append("\n\n");
+                    }
+                } else {
+                    tableBookingsS.append("There aren't bookings for this table");
                 }
                 tableAvailability.setText(tableBookingsS.toString());
 

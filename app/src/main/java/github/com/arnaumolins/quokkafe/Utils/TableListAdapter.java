@@ -47,10 +47,12 @@ public class TableListAdapter extends RecyclerView.Adapter<TableListAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         Table table = tables.get(position);
         viewHolder.itemView.setTag(table);
+
         String tableNumberS = "Table number: " + table.getTableNumber();
         viewHolder.number.setText(tableNumberS);
-        String costumersS = "Number of costumers: " + String.valueOf(table.getNumberOfCustomers());
-        viewHolder.customers.setText(costumersS);
+
+        String tableCostumerS = "Number of costumers: " + table.getNumberOfCustomers();
+        viewHolder.customers.setText(tableCostumerS);
 
         FirebaseStorage.getInstance().getReference("images/" + table.getImagePath()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

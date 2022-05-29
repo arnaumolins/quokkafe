@@ -12,43 +12,45 @@
 
         <TextView
             android:id="@+id/eventNamePlaceholder"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="30dp"
-            android:inputType="textMultiLine"
+            android:gravity="center"
             android:padding="10dp"
-            android:text="Event Name"
-            android:textSize="36sp"
+            android:text="Event name"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
         </TextView>
 
         <ImageView
             android:id="@+id/eventImagePlaceholder"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="180dp"
-            android:visibility="visible"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/eventNamePlaceholder">
+
         </ImageView>
 
         <TextView
             android:id="@+id/eventDatePlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:text="XX/XX/XXXX"
-            android:textSize="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/eventDescriptionPlaceholder"
-            app:layout_constraintEnd_toStartOf="@+id/IWillAttend"
-            app:layout_constraintHorizontal_bias="0.596"
-            app:layout_constraintStart_toEndOf="@+id/eventInterestPlaceholder"
-            app:layout_constraintTop_toBottomOf="@+id/eventImagePlaceholder"
-            app:layout_constraintVertical_bias="0.72">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="20dp"
+            android:gravity="center"
+            android:text="dd/mm/yyyy"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventImagePlaceholder">
 
         </TextView>
 
@@ -56,40 +58,29 @@
             android:id="@+id/eventInterestPlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:inputType="text"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="20dp"
+            android:gravity="center"
             android:text="Interest"
-            android:textSize="25dp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/eventDescriptionPlaceholder"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eventImagePlaceholder">
+            app:layout_constraintTop_toBottomOf="@+id/eventDatePlaceholder">
 
         </TextView>
-
-        <Button
-            android:id="@+id/IWillAttend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="I WILL ATTEND"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/eventDescriptionPlaceholder"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eventImagePlaceholder">
-
-        </Button>
 
         <TextView
             android:id="@+id/eventDescriptionPlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:textSize="18dp"
-            android:text="Description place holder"
-            app:layout_constraintBottom_toBottomOf="@+id/eventUsersPlaceholder"
-            app:layout_constraintTop_toBottomOf="@+id/eventInterestPlaceholder"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="20dp"
+            android:gravity="center"
+            android:text="Description of the event"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventInterestPlaceholder">
 
         </TextView>
 
@@ -97,13 +88,34 @@
             android:id="@+id/eventUsersPlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Users place holder."
-            android:textSize="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/eventDescriptionPlaceholder"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="20dp"
+            android:gravity="center"
+            android:text="Users place holder"
+            android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventDescriptionPlaceholder">
 
         </TextView>
+
+        <Button
+            android:id="@+id/IWillAttend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="30dp"
+            android:gravity="center"
+            android:text="I WILL ATTEND"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventUsersPlaceholder">
+
+        </Button>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

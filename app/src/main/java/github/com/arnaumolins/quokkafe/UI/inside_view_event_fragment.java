@@ -201,12 +201,20 @@ public class inside_view_event_fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Event event = snapshot.getValue(Event.class);
-
                 eventName.setText(event.getEventName());
+
+                String[] dateSArr = event.getDate().split("-");
+                StringBuilder dateS = new StringBuilder(dateSArr[0]).append("/").append(dateSArr[1]).append("/").append(dateSArr[2]);
+                eventDate.setText(dateS);
+
                 eventInterest.setText(event.getInterest());
-                eventDate.setText(event.getDate());
-                eventDescription.setText(event.getEventDescription());
-                eventUsers.setText(event.getAssistantsString());
+
+                StringBuilder descriptionS = new StringBuilder("Event description: ").append(event.getEventDescription());
+                eventDescription.setText(descriptionS);
+
+                StringBuilder assistantsS = new StringBuilder("Assistants to the event\n_______________\n").append(event.getAssistantsString());
+                eventUsers.setText(assistantsS);
+
                 ImageRepository.getInstance().getImageUri(event.getImagePath()).observe(getViewLifecycleOwner(), new Observer<Uri>() {
                     @Override
                     public void onChanged(Uri uri) {
@@ -238,7 +246,6 @@ public class inside_view_event_fragment extends Fragment {
                         userAttendsEvent.setValue(isAttending);
                     }
                 });
-
             }
 
             @Override

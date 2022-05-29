@@ -12,6 +12,8 @@
         android:id="@+id/table_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_margin="8dp">
 
         <LinearLayout
@@ -19,35 +21,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <!-- Media -->
-        <ImageView
-            android:id="@+id/ivTableImage"
-            android:layout_width="match_parent"
-            android:layout_height="194dp"
-            android:scaleType="centerCrop" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-        <!-- Title, secondary and supporting text -->
-            <TextView
-                android:id="@+id/tvTableNumber"
+            <!-- Table image -->
+            <ImageView
+                android:id="@+id/ivTableImage"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Title"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"/>
 
-            <TextView
-                android:id="@+id/tvTableCustomers"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Number of customers"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary" />
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Table number and number of costumers -->
+                    <TextView
+                        android:id="@+id/tvTableNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Table number"
+                        android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                    <TextView
+                        android:id="@+id/tvTableCustomers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Number of customers"
+                        android:textAppearance="?attr/textAppearanceBody2"/>
+
             </LinearLayout>
 
         </LinearLayout>
