@@ -143,7 +143,7 @@ public class create_table_fragment extends Fragment {
         MutableLiveData<Table> tableMutableLiveData = new MutableLiveData<>();
         tableMutableLiveData.setValue(table);
 
-        createTableViewModel.setTable(tableMutableLiveData, userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+        /*createTableViewModel.setTable(tableMutableLiveData, userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean setEventFinished) {
                 if (setEventFinished != null && setEventFinished) {
@@ -170,6 +170,6 @@ public class create_table_fragment extends Fragment {
                     progressBar.setVisibility(View.GONE);
                 }
             }
-        });
+        });*/
     }
 }

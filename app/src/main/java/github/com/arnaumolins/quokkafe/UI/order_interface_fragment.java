@@ -158,9 +158,10 @@ public class order_interface_fragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         int actualHour = calendar.get(Calendar.HOUR_OF_DAY);
 
+        MutableLiveData<Order> orderMutableLiveData = new MutableLiveData<>();
         MutableLiveData<User> userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
         progressBar.setVisibility(View.VISIBLE);
-        FirebaseDatabase.getInstance().getReference("User").child(userMutableLiveData.getValue().userId).child("ownedBookingIds").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+        FirebaseDatabase.getInstance().getReference("Users").child(userMutableLiveData.getValue().userId).child("ownedBookingIds").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
@@ -172,13 +173,12 @@ public class order_interface_fragment extends Fragment {
                 if (!bookingsIds.isEmpty()){
                     for (Booking b : bookingsIds){
                         if (b.getTableName() == tableBookedString){
-                            if (b.getStartingHour().getHour() < actualHour && actualHour < b.getEndingHour().getHour()){
+                            if (Integer.parseInt(b.getStartingHour()) < actualHour && actualHour < Integer.parseInt(b.getEndingHour())){
                                 // Creating order
                                 float priceBooking = 0;
-                                float differenceHours = b.getEndingHour().getHour() - b.getStartingHour().getHour();
+                                float differenceHours = Integer.parseInt(b.getEndingHour()) - Integer.parseInt(b.getStartingHour());
                                 if (differenceHours <= 4 ){priceBooking = getPriceBooking(differenceHours);}
                                 Order order = new Order(null, aFood, aDrink, priceBooking + totalPriceMenu);
-                                MutableLiveData<Order> orderMutableLiveData = new MutableLiveData<>();
                                 orderMutableLiveData.setValue(order);
 
                                 orderViewModel.setOrder(orderMutableLiveData, userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {

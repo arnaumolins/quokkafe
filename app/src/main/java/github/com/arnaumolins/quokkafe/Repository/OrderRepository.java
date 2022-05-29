@@ -31,6 +31,45 @@ public class OrderRepository {
         return instance;
     }
 
+    /*public MutableLiveData<Boolean> setOrder(MutableLiveData<Order> order, MutableLiveData<User> user) {
+        MutableLiveData<Boolean> setOrderState = new MutableLiveData<>();
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Orders");
+        String orderId = dbRef.push().getKey();
+        order.getValue().setOrderId(orderId);
+        Log.d(TAG, "Set event with id " + orderId);
+        dbRef.child(orderId).setValue(order.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "Crated event with id " + orderId);
+                    FirebaseDatabase.
+                            getInstance()
+                            .getReference("Users")
+                            .child(user.getValue().userId)
+                            .child(orderId)
+                            .setValue(orderId)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Log.d(TAG, "User " + user.getValue().userId + " is owner of " + orderId);
+                                        setOrderState.setValue(true);
+                                    }   else{
+                                        Log.e(TAG, "User "+ user.getValue().userId +" is not owner of " + orderId);
+                                        setOrderState.setValue(false);
+                                    }
+                                }
+                            });
+                } else {
+                    Log.e(TAG, "Can't create event!!!");
+                    setOrderState.setValue(false);
+                }
+            }
+        });
+        return setOrderState;
+    }*/
+
+
     public MutableLiveData<Boolean> setOrder(MutableLiveData<Order> order, MutableLiveData<User> user) {
         MutableLiveData<Boolean> setOrderState = new MutableLiveData<>();
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Orders");
@@ -46,7 +85,6 @@ public class OrderRepository {
                             .getReference("Users")
                             .child(user.getValue().userId)
                             .child("ownedOrdersIds")
-                            .child(orderId)
                             .setValue(orderId)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

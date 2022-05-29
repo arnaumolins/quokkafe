@@ -144,7 +144,7 @@ public class inside_view_table_fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("Book table", "Going to book");
-                Booking newBooking = new Booking("null", tableIdLiveData.getValue(), userMutableLiveData.getValue().userId,
+                Booking newBooking = new Booking("null", tableLiveData.getValue().getTableNumber(), tableIdLiveData.getValue(), userMutableLiveData.getValue().userId,
                         String.valueOf(bookingDate.getYear()),
                         String.valueOf(bookingDate.getMonth()),
                         String.valueOf(bookingDate.getDayOfMonth()),
