@@ -127,4 +127,13 @@
             android:id="@+id/action_inside_order_fragment_to_all_orders_fragment"
             app:destination="@id/all_orders_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/user_interface_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.user_interface_fragment"
+        android:label="fragment_user_interface_fragment"
+        tools:layout="@layout/fragment_user_interface_fragment" >
+        <action
+            android:id="@+id/action_user_interface_fragment_to_starting_page_fragment"
+            app:destination="@id/starting_page_fragment" />
+    </fragment>
 </navigation>
