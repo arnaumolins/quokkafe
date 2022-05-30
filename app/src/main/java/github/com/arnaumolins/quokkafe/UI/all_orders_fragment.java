@@ -73,7 +73,7 @@ public class all_orders_fragment extends Fragment {
             @Override
             public NavDirections navigate(String id) {
                 all_orders_fragmentDirections.ActionAllOrdersFragmentToInsideOrderFragment action = all_orders_fragmentDirections.actionAllOrdersFragmentToInsideOrderFragment();
-                action.setStringId(id);
+                action.setItemId(id);
                 return action;
             }
         });
@@ -92,17 +92,12 @@ public class all_orders_fragment extends Fragment {
                     @Override
                     public void onChanged(ArrayList<Order> orders) {
                         ArrayList<Order> ownedOrders = new ArrayList<>();
-                        Log.d("ownedOrders", "ENTRO");
                         if (orders != null) {
-                            Log.d("ownedOrder", "NO ES NULL");
                             for (Order order : orders) {
-                                Log.d("ownedOrders", order.getOrderId());
                                 if (orderIds.contains(order.getOrderId())) {
-                                    Log.d("ownedOrders", "WTF");
                                     ownedOrders.add(order);
                                 }
                             }
-                            Log.d("ownedOrders", ownedOrders.toString());
                             orderAdapter.setOrders(ownedOrders);
                             orderRV.setAdapter(orderAdapter);
                             orderAdapter.notifyDataSetChanged();

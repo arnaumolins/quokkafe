@@ -3,6 +3,7 @@ package github.com.arnaumolins.quokkafe.Repository;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -99,5 +100,21 @@ public class OrderRepository {
             });
         }
         return ordersLiveData;
+    }
+
+    public MutableLiveData<Boolean> deleteOrder(String orderId) {
+        MutableLiveData<Boolean> delOrder = new MutableLiveData<>();
+        FirebaseDatabase.getInstance().getReference("Orders").child(orderId).removeValue(new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                if (error != null) {
+                    Log.d(TAG, error.getMessage());
+                    Log.d(TAG, error.getDetails());
+                }
+                Log.d(TAG, "Order deleted");
+                delOrder.setValue(true);
+            }
+        });
+        return delOrder;
     }
 }

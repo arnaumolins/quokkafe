@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import github.com.arnaumolins.quokkafe.Model.Booking;
 import github.com.arnaumolins.quokkafe.Model.Order;
 import github.com.arnaumolins.quokkafe.Model.User;
+import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
 import github.com.arnaumolins.quokkafe.Repository.BookingRepository;
 import github.com.arnaumolins.quokkafe.Repository.OrderRepository;
 
@@ -20,5 +21,13 @@ public class OrderViewModel extends ViewModel {
 
     public MutableLiveData<ArrayList<Order>> getOrderMutableLiveData() {
         return OrderRepository.getInstance().getAllOrders();
+    }
+
+    public MutableLiveData<Boolean> deleteOrder(String orderId) {
+        return OrderRepository.getInstance().deleteOrder(orderId);
+    }
+
+    public MutableLiveData<Boolean> deleteOrderOwnership(String orderId, String ownerId) {
+        return AuthRepository.getAuthRepository().deleteOrderOwnership(orderId, ownerId);
     }
 }
