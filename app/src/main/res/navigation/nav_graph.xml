@@ -96,7 +96,11 @@
         android:id="@+id/attending_events_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.attending_events_fragment"
         android:label="fragment_attending_events_fragment"
-        tools:layout="@layout/fragment_attending_events_fragment" />
+        tools:layout="@layout/fragment_attending_events_fragment" >
+        <action
+            android:id="@+id/action_attending_events_fragment_to_inside_view_event_fragment"
+            app:destination="@id/inside_view_event_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/all_orders_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.all_orders_fragment"
