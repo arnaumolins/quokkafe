@@ -64,7 +64,6 @@ public class EventRepository {
         return eventsLiveData;
     }
 
-    // TODO Check this at the end
     public MutableLiveData<Boolean> setEvent(MutableLiveData<Event> event, MutableLiveData<User> user) {
         MutableLiveData<Boolean> setEventState = new MutableLiveData<>();
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Events");

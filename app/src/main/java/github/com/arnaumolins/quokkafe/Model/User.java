@@ -1,6 +1,6 @@
 package github.com.arnaumolins.quokkafe.Model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class User {
 
@@ -10,11 +10,11 @@ public class User {
     public String userPassword;
     public int userAge;
     public int userPoints;
-    public List<String> interestedIn;
+    public ArrayList<String> interestedIn;
 
     public User() {}
 
-    public User (String userName, String userEmail, int userAge, List<String> interestedIn) {
+    public User (String userName, String userEmail, int userAge, ArrayList<String> interestedIn) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userAge = userAge;
@@ -22,7 +22,7 @@ public class User {
         this.interestedIn = interestedIn;
     }
 
-    public User(String userId, String userName, String userEmail, String userPassword, int userAge, List<String> interestedIn) {
+    public User(String userId, String userName, String userEmail, String userPassword, int userAge, ArrayList<String> interestedIn) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -80,11 +80,11 @@ public class User {
         this.userPoints = userPoints;
     }
 
-    public List<String> getInterestedIn() {
+    public ArrayList<String> getInterestedIn() {
         return interestedIn;
     }
 
-    public void setInterestedIn(List<String> interestedIn) {
+    public void setInterestedIn(ArrayList<String> interestedIn) {
         this.interestedIn = interestedIn;
     }
 }

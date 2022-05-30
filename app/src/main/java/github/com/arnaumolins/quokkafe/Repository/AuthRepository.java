@@ -76,7 +76,7 @@ public class AuthRepository {
         return signInEnd;
     }
 
-    public MutableLiveData<User> firebaseSignUp(String username, String email, String password, Integer age, List<String> interestedIn) {
+    public MutableLiveData<User> firebaseSignUp(String username, String email, String password, Integer age, ArrayList<String> interestedIn) {
         MutableLiveData<User> userMutableLiveData = new MutableLiveData<>();
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

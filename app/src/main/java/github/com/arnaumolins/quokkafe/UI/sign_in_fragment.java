@@ -1,15 +1,6 @@
 package github.com.arnaumolins.quokkafe.UI;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,15 +13,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
@@ -56,7 +46,7 @@ public class sign_in_fragment extends Fragment {
 
     private ListView interestsList;
     private EditText username, email, password, age;
-    private Button signinButton;
+    private Button signInButton;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
@@ -71,13 +61,13 @@ public class sign_in_fragment extends Fragment {
         email = (EditText) view.findViewById(R.id.email);
         password = (EditText) view.findViewById(R.id.password);
         age = (EditText) view.findViewById(R.id.yearsOld);
-        signinButton = (Button) view.findViewById(R.id.sign_in_action);
+        signInButton = (Button) view.findViewById(R.id.sign_in_action);
         interestsList = (ListView) view.findViewById(R.id.listView_interests);
 
-        ArrayAdapter<String> interestsAdaptator = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_multiple_choice, getResources().getStringArray(R.array.InterestsList));
-        interestsList.setAdapter(interestsAdaptator);
+        ArrayAdapter<String> interestsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_multiple_choice, getResources().getStringArray(R.array.InterestsList));
+        interestsList.setAdapter(interestsAdapter);
 
-        signinButton.setOnClickListener(l -> {
+        signInButton.setOnClickListener(l -> {
             signInFunction();
         });
         return view;
@@ -88,7 +78,7 @@ public class sign_in_fragment extends Fragment {
         String emailString = email.getText().toString().trim();
         String passwordString = password.getText().toString().trim();
         String ageString = age.getText().toString();
-        List<String> interestsStrings = new ArrayList<String>();
+        ArrayList<String> interestsStrings = new ArrayList<>();
 
         for (int i = 0; i < interestsList.getCount(); i++){
             if(interestsList.isItemChecked(i)){
@@ -139,32 +129,6 @@ public class sign_in_fragment extends Fragment {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        /*
-        mAuth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    User user = new User(usernameString, emailString, 18, interestsStrings);
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(getActivity(), "User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_fragment_to_log_in_fragment);
-                            } else {
-                                Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        }
-                    });
-                } else {
-                    Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
-                }
-            }
-        });*/
-
         AuthViewModel authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         authViewModel.signUp(usernameString, emailString, passwordString, ageInt, interestsStrings).observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
@@ -173,13 +137,12 @@ public class sign_in_fragment extends Fragment {
                     Toast.makeText(getActivity(), "User has been registered successfully!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                     ((TextView)getActivity().findViewById(R.id.header_username)).setText("Logged as : " + user.userName);
-                    Navigation.findNavController(getView()).navigate(R.id.action_sign_in_fragment_to_event_interface_fragment);
-                    signinButton.setEnabled(true);
+                    Navigation.findNavController(getView()).navigate(R.id.action_sign_in_fragment_to_starting_page_fragment);
                 } else {
                     Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
-                    signinButton.setEnabled(true);
                 }
+                signInButton.setEnabled(true);
             }
         });
     }

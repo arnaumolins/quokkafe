@@ -23,8 +23,8 @@
         android:label="fragment_sign_in_fragment"
         tools:layout="@layout/fragment_sign_in_fragment" >
         <action
-            android:id="@+id/action_sign_in_fragment_to_event_interface_fragment"
-            app:destination="@id/event_interface_fragment" />
+            android:id="@+id/action_sign_in_fragment_to_starting_page_fragment"
+            app:destination="@id/starting_page_fragment" />
     </fragment>
     <fragment
         android:id="@+id/log_in_fragment"

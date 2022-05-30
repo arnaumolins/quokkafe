@@ -1,6 +1,13 @@
 package github.com.arnaumolins.quokkafe.UI;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -10,14 +17,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,14 +25,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import github.com.arnaumolins.quokkafe.Model.Drinks;
-import github.com.arnaumolins.quokkafe.Model.Event;
 import github.com.arnaumolins.quokkafe.Model.Food;
 import github.com.arnaumolins.quokkafe.Model.Order;
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
 import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
 import github.com.arnaumolins.quokkafe.ViewModel.OrderViewModel;
-import github.com.arnaumolins.quokkafe.ViewModel.ViewEventViewModel;
 
 public class inside_order_fragment extends Fragment {
 
@@ -64,7 +61,6 @@ public class inside_order_fragment extends Fragment {
         getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.appbar_top).setVisibility(View.VISIBLE);
         ((MainActivity)getActivity()).unlockDrawerMenu();
-        //TODO Buttons which are visible
     }
 
     @Override

@@ -1,6 +1,9 @@
 package github.com.arnaumolins.quokkafe.UI;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
@@ -11,16 +14,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+
 import github.com.arnaumolins.quokkafe.Model.Order;
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
@@ -51,7 +50,6 @@ public class all_orders_fragment extends Fragment {
         getActivity().findViewById(R.id.bottom_navigation).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.appbar_top).setVisibility(View.VISIBLE);
         ((MainActivity)getActivity()).unlockDrawerMenu();
-        //TODO Buttons which are visible
     }
 
     @Override

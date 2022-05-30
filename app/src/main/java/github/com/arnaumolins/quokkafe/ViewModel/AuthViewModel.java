@@ -3,7 +3,7 @@ package github.com.arnaumolins.quokkafe.ViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
@@ -23,7 +23,7 @@ public class AuthViewModel extends ViewModel {
         return authRepository.firebaseSignIn(email, password);
     }
 
-    public MutableLiveData<User> signUp(String username, String email, String password, Integer age,  List<String> interestedIn) {
+    public MutableLiveData<User> signUp(String username, String email, String password, Integer age,  ArrayList<String> interestedIn) {
         return authRepository.firebaseSignUp(username, email, password, age, interestedIn);
     }
 
