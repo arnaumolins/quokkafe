@@ -1,6 +1,9 @@
 package github.com.arnaumolins.quokkafe.Repository;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -11,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -152,5 +156,21 @@ public class AuthRepository {
             });
         }
         return bookingsLiveData;
+    }
+
+    public MutableLiveData<Boolean> deleteOrderOwnership(String orderId, String ownerId) {
+        MutableLiveData<Boolean> delOwnership = new MutableLiveData<>();
+        FirebaseDatabase.getInstance().getReference("Users").child(ownerId).child("ownedOrdersIds").child(orderId).removeValue(new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                if(error != null){
+                    Log.d(TAG, error.getMessage());
+                    Log.d(TAG, error.getDetails());
+                }
+                Log.d(TAG, "delOwnership to true");
+                delOwnership.setValue(true);
+            }
+        });
+        return delOwnership;
     }
 }

@@ -3,12 +3,12 @@
     <item
         android:id="@+id/attending_events_fragment"
         android:enabled="true"
-        android:title="Attending events >"/>
+        android:title="Your events >"/>
 
     <item
         android:id="@+id/booked_tables_fragment"
         android:enabled="true"
-        android:title="Booked tables >"/>
+        android:title="Your bookings >"/>
 
     <item
         android:id="@+id/all_orders_fragment"
