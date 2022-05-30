@@ -113,6 +113,7 @@ public class BookingRepository {
                 }
                 Log.d(TAG, "Booking deleted");
                 delEvent.setValue(true);
+                AuthRepository.getAuthRepository().deleteBookingOwnership(bookingId);
             }
         });
         return delEvent;

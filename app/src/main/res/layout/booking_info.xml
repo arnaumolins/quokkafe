@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="100dp"
     android:layout_margin="5dp"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical">
@@ -29,7 +29,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="10dp"
                 android:text="Table number"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,11 +49,12 @@
 
             <Button
                 android:id="@+id/deleteBookingBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="120dp"
                 android:layout_marginTop="16dp"
                 android:text="Delete"
+                android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvBookedTableTime"
                 app:layout_constraintTop_toTopOf="parent" />

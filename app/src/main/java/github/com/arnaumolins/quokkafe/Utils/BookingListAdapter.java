@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import github.com.arnaumolins.quokkafe.Model.Booking;
 import github.com.arnaumolins.quokkafe.R;
+import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
 import github.com.arnaumolins.quokkafe.Repository.BookingRepository;
 
 public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.ViewHolder> {
@@ -23,6 +24,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
     private final Context context;
 
     BookingRepository bookingRepository;
+    AuthRepository authRepository;
 
     public  BookingListAdapter(Context context) {
         this.context = context;

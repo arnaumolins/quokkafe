@@ -130,40 +130,29 @@ public class AuthRepository {
         return attendingEventsLiveData;
     }
 
-    public MutableLiveData<List<String>> getCurrentUserBookings() {
-        User user = currentUser.getValue();
-        MutableLiveData<List<String>> bookingsLiveData = new MutableLiveData<>();
-        if (currentUser != null) {
-            FirebaseDatabase.getInstance().getReference("Users").child(user.userId).child("bookingsIds").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DataSnapshot dataSnapshot = task.getResult();
-                        ArrayList<String> bookingsIds = new ArrayList<>();
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            bookingsIds.add(ds.getValue(String.class));
-                        }
-                        bookingsLiveData.setValue(bookingsIds);
-                    } else {
-                        bookingsLiveData.setValue(null);
-                    }
-                }
-            }). addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    bookingsLiveData.setValue(null);
-                }
-            });
-        }
-        return bookingsLiveData;
-    }
-
     public MutableLiveData<Boolean> deleteOrderOwnership(String orderId, String ownerId) {
         MutableLiveData<Boolean> delOwnership = new MutableLiveData<>();
         FirebaseDatabase.getInstance().getReference("Users").child(ownerId).child("ownedOrdersIds").child(orderId).removeValue(new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                if(error != null){
+                if (error != null) {
+                    Log.d(TAG, error.getMessage());
+                    Log.d(TAG, error.getDetails());
+                }
+                Log.d(TAG, "delOwnership to true");
+                delOwnership.setValue(true);
+            }
+        });
+        return delOwnership;
+    }
+
+    public MutableLiveData<Boolean> deleteBookingOwnership(String bookingId) {
+        User user = currentUser.getValue();
+        MutableLiveData<Boolean> delOwnership = new MutableLiveData<>();
+        FirebaseDatabase.getInstance().getReference("Users").child(user.userId).child("ownedBookingIds").child(bookingId).removeValue(new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                if (error != null) {
                     Log.d(TAG, error.getMessage());
                     Log.d(TAG, error.getDetails());
                 }
