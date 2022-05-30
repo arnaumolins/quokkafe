@@ -19,7 +19,6 @@ public class BookingViewModel extends ViewModel {
         return BookingRepository.getInstance().createBooking(booking, user);
     }
 
-    //TODO use this in the side menu
     public MutableLiveData<Boolean> deleteBooking(String bookingId) {
         return BookingRepository.getInstance().deleteBooking(bookingId);
     }

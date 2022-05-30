@@ -1,7 +1,6 @@
 package github.com.arnaumolins.quokkafe.UI;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,7 +108,6 @@ public class attending_events_fragment extends Fragment {
                                 }
                             }
 
-                            Log.d(TAG, userEvents.toString());
                             eventListAdapter.setEvents(userEvents);
                             eventRV.setAdapter(eventListAdapter);
                             eventListAdapter.notifyDataSetChanged();

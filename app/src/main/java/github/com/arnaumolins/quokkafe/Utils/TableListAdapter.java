@@ -24,6 +24,7 @@ import github.com.arnaumolins.quokkafe.Model.Table;
 import github.com.arnaumolins.quokkafe.R;
 
 public class TableListAdapter extends RecyclerView.Adapter<TableListAdapter.ViewHolder> {
+
     public static final String TAG = "TableListAdapter";
     private ArrayList<Table> tables;
     private final Context context;
