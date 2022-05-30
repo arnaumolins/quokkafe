@@ -2,6 +2,15 @@ package github.com.arnaumolins.quokkafe.UI;
 
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +21,9 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ import github.com.arnaumolins.quokkafe.Model.Order;
 import github.com.arnaumolins.quokkafe.Model.User;
 import github.com.arnaumolins.quokkafe.R;
 import github.com.arnaumolins.quokkafe.Repository.AuthRepository;
+import github.com.arnaumolins.quokkafe.Repository.BookingRepository;
 import github.com.arnaumolins.quokkafe.ViewModel.BookingViewModel;
 import github.com.arnaumolins.quokkafe.ViewModel.OrderViewModel;
 
@@ -182,19 +186,28 @@ public class order_interface_fragment extends Fragment {
                             if (bookings != null){
                                 for (Booking book : bookings) {
                                     if (bookingsIds.contains(book.getBookingId())) {
+                                        Log.d("allBookings", book.getTableName());
                                         bookingArrayList.add(book);
                                     }
                                 }
 
+                                Log.d("allBookings", bookingArrayList.toString());
                                 for (Booking b : bookingArrayList) {
+                                    Log.d("allBookings", b.getTableName());
                                     if (b.getTableName().equals(tableBookedString)) {
+                                        Log.d("allBookings", String.valueOf(b.getEndingHour()));
                                         if (Integer.parseInt(b.getStartingHour()) <= actualHour && actualHour <= Integer.parseInt(b.getEndingHour())) {
                                             float priceBooking = 0;
                                             float differenceHours = Integer.parseInt(b.getEndingHour()) - Integer.parseInt(b.getStartingHour());
                                             if (differenceHours <= 4) {
                                                 priceBooking = getPriceBooking(differenceHours);
                                             }
-                                            Order order = new Order(null, aFood, aDrink, priceBooking + totalPriceMenu);
+                                            String bName = b.getTableName();
+                                            String bSHour = b.getStartingHour();
+                                            String bEHour = b.getEndingHour();
+                                            String bSMinute = b.getStartingMinute();
+                                            String bEMinute = b.getEndingMinute();
+                                            Order order = new Order(null, bName, bSHour, bEHour, bSMinute, bEMinute, aFood, aDrink, priceBooking + totalPriceMenu);
                                             orderMutableLiveData.setValue(order);
 
                                             orderViewModel.setOrder(orderMutableLiveData, userMutableLiveData).observe(getViewLifecycleOwner(), new Observer<Boolean>() {

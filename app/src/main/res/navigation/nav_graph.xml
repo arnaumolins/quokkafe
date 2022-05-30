@@ -102,13 +102,26 @@
             app:destination="@id/inside_view_event_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/all_orders_fragment"
-        android:name="github.com.arnaumolins.quokkafe.UI.all_orders_fragment"
-        android:label="fragment_all_orders_fragment"
-        tools:layout="@layout/fragment_all_orders_fragment" />
-    <fragment
         android:id="@+id/booked_tables_fragment"
         android:name="github.com.arnaumolins.quokkafe.UI.booked_tables_fragment"
         android:label="fragment_booked_tables_fragment"
         tools:layout="@layout/fragment_booked_tables_fragment" />
+    <fragment
+        android:id="@+id/all_orders_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.all_orders_fragment"
+        android:label="fragment_all_orders_fragment"
+        tools:layout="@layout/fragment_all_orders_fragment" >
+        <action
+            android:id="@+id/action_all_orders_fragment_to_inside_order_fragment"
+            app:destination="@id/inside_order_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inside_order_fragment"
+        android:name="github.com.arnaumolins.quokkafe.UI.inside_order_fragment"
+        android:label="fragment_inside_order_fragment"
+        tools:layout="@layout/fragment_inside_order_fragment" >
+        <argument android:name="string_id"
+            app:argType="string"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>

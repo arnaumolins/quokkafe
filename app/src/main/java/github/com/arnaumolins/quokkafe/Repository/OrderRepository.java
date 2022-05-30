@@ -46,6 +46,7 @@ public class OrderRepository {
                             .getReference("Users")
                             .child(user.getValue().userId)
                             .child("ownedOrdersIds")
+                            .child(orderId)
                             .setValue(orderId)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
