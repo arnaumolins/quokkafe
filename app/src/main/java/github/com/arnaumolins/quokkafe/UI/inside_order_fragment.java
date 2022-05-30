@@ -71,6 +71,7 @@ public class inside_order_fragment extends Fragment {
         orderIdLiveData = new MutableLiveData<>(args.getItemId());
         View view = inflater.inflate(R.layout.fragment_inside_order_fragment, container, false);
 
+
         viewOrderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         userMutableLiveData = AuthRepository.getAuthRepository().getCurrentUser();
 
