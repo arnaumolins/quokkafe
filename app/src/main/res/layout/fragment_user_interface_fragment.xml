@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="10dp"
-        android:text="SIGN OUT"
+        android:text="LOG OUT"
         android:layout_gravity="center"
         android:textSize="15sp"
         android:textStyle="bold"/>
