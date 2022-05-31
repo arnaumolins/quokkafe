@@ -51,7 +51,7 @@
 
 
     <ListView
-        android:id="@+id/itemListPlaceholder"
+        android:id="@+id/interestListPlaceholder"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_marginHorizontal="16dp"
