@@ -93,21 +93,21 @@ public class inside_order_fragment extends Fragment {
                 StringBuilder periodS = new StringBuilder(order.getStartingHour()).append(":").append(order.getStartingMinute()).append(" - ").append(order.getEndingHour()).append(":").append(order.getEndingMinute());
                 datePlaceholder.setText(periodS);
 
-                StringBuilder priceString = new StringBuilder(String.valueOf(order.getTotalPrice())).append(" .dkk");
-                pricePlaceHolder.setText(priceString);
+                StringBuilder priceS = new StringBuilder("Price: ").append(order.getTotalPrice()).append(" kr.");
+                pricePlaceHolder.setText(priceS);
 
                 ArrayList<String> itemList = new ArrayList<>();
-                for(Drinks itemDrink : order.getDrinksArrayList()){
+                for (Drinks itemDrink : order.getDrinksArrayList()) {
                     String drinkName = itemDrink.getDrinkName();
                     itemList.add(drinkName);
                 }
 
-                for (Food itemFood : order.getFoodArrayList()){
+                for (Food itemFood : order.getFoodArrayList()) {
                     String foodName = itemFood.getFoodName();
                     itemList.add(foodName);
                 }
 
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,itemList);
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, itemList);
                 itemListPlaceHolder.setAdapter(arrayAdapter);
 
                 deleteOrder.setOnClickListener(l -> {

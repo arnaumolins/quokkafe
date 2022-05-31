@@ -14,7 +14,6 @@
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/fragment_sign_in_fragment.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/fragment_starting_page_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/fragment_table_booking_fragment.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/fragment_user_interface_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/layout/table_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/quokkafe/app/src/main/res/menu/drawer_menu.xml" value="0.20416666666666666" />
@@ -29,6 +28,7 @@
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_create_event_fragment.xml" value="0.14722222222222223" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_event_interface_fragment.xml" value="0.5" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_inside_booking_fragment.xml" value="0.14537037037037037" />
+        <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_inside_order_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_inside_view_event_fragment.xml" value="0.33" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_inside_view_table_fragment.xml" value="0.2582025677603424" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_log_in_fragment.xml" value="0.33" />
@@ -36,10 +36,14 @@
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_sign_in_fragment.xml" value="0.25" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_starting_page_fragment.xml" value="0.25" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_table_booking_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/fragment_user_interface_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/order_info.xml" value="0.2375" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/table_info.xml" value="0.25" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/layout/table_item.xml" value="0.1" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/menu/drawer_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3335" />
+        <entry key="..\:/Users/joelf/Desktop/Enginyeria Informatica/VIA University College/Second semester/International Project within Information and Communication/Quokkafe/quokkafe/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3335" />
       </map>
     </option>
   </component>

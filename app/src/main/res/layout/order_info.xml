@@ -18,19 +18,21 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Event name, theme, date and description -->
+                <!-- Order name, date and price -->
                 <TextView
                     android:id="@+id/order_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Title"
+                    android:text="Order number"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
                     android:textAppearance="?attr/textAppearanceHeadline6"/>
 
                 <TextView
                     android:id="@+id/order_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:text="Date"
                     android:textAppearance="?attr/textAppearanceBody2"/>
 
@@ -38,7 +40,7 @@
                     android:id="@+id/order_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="10dp"
                     android:text="Price"
                     android:textAppearance="?attr/textAppearanceBody2"/>
         </LinearLayout>

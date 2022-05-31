@@ -122,7 +122,8 @@ public class inside_view_event_fragment extends Fragment {
                                                 if (currentUser != null) {
                                                     e.removeAssistant(currentUser.userName);
                                                 }
-                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistantsString());
+                                                StringBuilder assistantsS = new StringBuilder("Assistants to the event\n_______________\n\n").append(event.getAssistantsString());
+                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(assistantsS);
 
                                                 userAttendsEvent.setValue(false);
                                             }
@@ -172,7 +173,9 @@ public class inside_view_event_fragment extends Fragment {
                                                 if (currentUser != null) {
                                                     e.addAssistant(currentUser.userName);
                                                 }
-                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(e.getAssistantsString());
+
+                                                StringBuilder assistantsS = new StringBuilder("Assistants to the event\n_______________\n\n").append(event.getAssistantsString());
+                                                ((TextView) view.findViewById(R.id.eventUsersPlaceholder)).setText(assistantsS);
 
                                                 userAttendsEvent.setValue(true);
                                             }
