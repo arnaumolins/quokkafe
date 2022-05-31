@@ -90,7 +90,7 @@ public class inside_order_fragment extends Fragment {
                 Order order = snapshot.getValue(Order.class);
                 namePlaceHolder.setText(order.getTableName());
 
-                StringBuilder periodS = new StringBuilder(order.getStartingHour()).append(":").append(order.getStartingMinute()).append(" - ").append(order.getEndingHour()).append(":").append(order.getEndingMinute());
+                StringBuilder periodS = new StringBuilder(("Booked hours: ")).append(order.getStartingHour()).append(":").append(order.getStartingMinute()).append(" - ").append(order.getEndingHour()).append(":").append(order.getEndingMinute());
                 datePlaceholder.setText(periodS);
 
                 StringBuilder priceS = new StringBuilder("Price: ").append(order.getTotalPrice()).append(" kr.");
